@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_project/components/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,30 +23,15 @@ class _HomePageState extends State<HomePage> {
     FirebaseAuth.instance.signOut();
   }
 
-  //post message
-  void postMessage() {
-    //only post if there is something in the text field
-    if (textController.text.isNotEmpty) {
-      //store in Firebase
-      FirebaseFirestore.instance.collection("User Posts").add({
-        "Message": textController.text,
-        "TimeStamp": Timestamp.now(),
-        'Likes': [],
-      });
-    }
-
-    //clear the textfield
-    setState(() {
-      textController.clear();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text("ENSF609 Hackathon"),
+      ),
+      drawer: MyDrawer(
+        onSignOut: signOut,
       ),
       body: Center(
         child: Column(children: [
