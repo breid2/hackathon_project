@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "758084983791",
+    "project_id": "nursing-hackathon",
+    "storage_bucket": "nursing-hackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758084983791:android:d896dc07a0635ca86d741a",
+        "android_client_info": {
+          "package_name": "com.example.hackathon_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtYt3vr086wJVhkaQIjlY7HBKCNDrJsqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
