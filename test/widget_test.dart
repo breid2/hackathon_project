@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hackathon_project/app.dart';
 
 import 'package:hackathon_project/main.dart';
 

@@ -1,17 +1,27 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_project/auth/auth.dart';
 
-import 'app.dart';
 import 'firebase_options.dart';
-
-// TODO(codelab user): Get API key
-const clientId = 'YOUR_CLIENT_ID';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const AuthPage(),
+        routes: {
+          //'/Activity': (context) => const CreateActivity(),
+        });
+  }
 }
