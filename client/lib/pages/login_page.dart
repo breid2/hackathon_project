@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/button.dart';
 import 'package:hackathon_project/components/text_field.dart';
+import 'package:hackathon_project/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -111,6 +112,40 @@ class _LoginPageState extends State<LoginPage> {
                 MyButton(onTap: signIn, text: 'Sign In'),
 
                 const SizedBox(height: 10),
+
+                //go to register page
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Not a member?",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage(
+                                    onTap: () {},
+                                  )),
+                        );
+                      },
+                      child: const Text(
+                        "Register now",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

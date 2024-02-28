@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
+import 'package:hackathon_project/pages/chat_page.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -27,6 +28,19 @@ class MyDrawer extends StatelessWidget {
               icon: Icons.home,
               text: 'Home',
               onTap: () => Navigator.pop(context),
+            ),
+
+            //chat list tile
+            MyListTile(
+              icon: Icons.chat,
+              text: 'Chat',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ChatPage(
+                          user: '',
+                        )),
+              ),
             ),
           ],
         ),
