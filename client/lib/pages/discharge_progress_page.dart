@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:hackathon_project/components/progress_bar.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart'; // Make sure this import path is correct
 
@@ -68,37 +67,3 @@ class _DischargeProgressPageState extends State<DischargeProgressPage> {
   }
 }
 
-
-// class _DischargeProgressPageState extends State<DischargeProgressPage> {
-//   double _progress = 0.0;
-
-//   @overrider
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Discharge Progress'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             ProgressBar(progress: _progress),
-//             SizedBox(height: 20, width: 40),
-//             Text('Adjust Progress:'),
-//             Slider(
-//               value: _progress,
-//               onChanged: (newProgress) {
-//                 setState(() {
-//                   _progress = newProgress;
-//                 });
-//               },
-//               min: 0.0,
-//               max: 1.0,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
