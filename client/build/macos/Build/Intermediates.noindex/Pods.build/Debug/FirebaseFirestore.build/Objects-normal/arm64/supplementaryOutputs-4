@@ -1,0 +1,18 @@
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/EncoderDecoder.swift":
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/EncoderDecoder.swiftdeps"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/EncoderDecoder.o"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/EncoderDecoder.d"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/EncoderDecoder.swiftconstvalues"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/EncoderDecoder.dia"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/ExplicitNull.swift":
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ExplicitNull.o"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ExplicitNull.swiftconstvalues"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ExplicitNull.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ExplicitNull.dia"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ExplicitNull.d"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/FieldValue+Encodable.swift":
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FieldValue+Encodable.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FieldValue+Encodable.dia"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FieldValue+Encodable.o"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FieldValue+Encodable.swiftconstvalues"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FieldValue+Encodable.d"

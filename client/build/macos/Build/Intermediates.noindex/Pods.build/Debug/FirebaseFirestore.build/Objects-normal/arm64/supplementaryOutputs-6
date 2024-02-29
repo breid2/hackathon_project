@@ -1,0 +1,18 @@
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/ServerTimestamp.swift":
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ServerTimestamp.d"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ServerTimestamp.swiftconstvalues"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ServerTimestamp.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ServerTimestamp.dia"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/ServerTimestamp.o"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/GeoPoint+Codable.swift":
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/GeoPoint+Codable.dia"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/GeoPoint+Codable.swiftconstvalues"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/GeoPoint+Codable.o"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/GeoPoint+Codable.d"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/GeoPoint+Codable.swiftdeps"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/QueryPredicate.swift":
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/QueryPredicate.d"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/QueryPredicate.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/QueryPredicate.dia"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/QueryPredicate.swiftconstvalues"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/QueryPredicate.o"

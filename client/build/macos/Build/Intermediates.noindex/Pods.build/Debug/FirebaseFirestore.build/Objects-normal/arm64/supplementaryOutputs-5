@@ -1,0 +1,18 @@
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/AsyncAwait/Firestore+AsyncAwait.swift":
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/Firestore+AsyncAwait.swiftdeps"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/Firestore+AsyncAwait.o"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/Firestore+AsyncAwait.d"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/Firestore+AsyncAwait.dia"
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/Firestore+AsyncAwait.swiftconstvalues"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/FirestoreQueryObservable.swift":
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQueryObservable.swiftconstvalues"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQueryObservable.d"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQueryObservable.o"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQueryObservable.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQueryObservable.dia"
+"/Users/altonwong/Documents/ENSF 609/hackathon_project/client/macos/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/FirestoreQuery.swift":
+  const-values: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQuery.swiftconstvalues"
+  swift-dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQuery.swiftdeps"
+  diagnostics: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQuery.dia"
+  object: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQuery.o"
+  dependencies: "/Users/altonwong/Documents/ENSF 609/hackathon_project/client/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseFirestore.build/Objects-normal/arm64/FirestoreQuery.d"
