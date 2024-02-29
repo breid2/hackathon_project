@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
-import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
+import 'package:hackathon_project/pages/at_home_checklist.dart';
+import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -54,6 +55,17 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => const DischargeProgressPage(
                           user: '',
+                        )),
+              ),
+            ),
+
+            MyListTile(
+              icon: Icons.calendar_today,
+              text: 'Expected Date of Discharge',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DateOfDischargePage(
                         )),
               ),
             ),
