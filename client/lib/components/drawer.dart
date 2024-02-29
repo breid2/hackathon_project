@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
+import 'package:hackathon_project/pages/at_home_checklist.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -42,6 +43,20 @@ class MyDrawer extends StatelessWidget {
                         )),
               ),
             ),
+
+            //at home check list tile
+            MyListTile(
+              icon: Icons.list, 
+              text: 'At-Home Checklist',
+              // onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChecklistPage())),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChecklistPage()),
+                );
+              },
+            ),
+
           ],
         ),
 
