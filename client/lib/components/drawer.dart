@@ -3,6 +3,7 @@ import 'package:hackathon_project/components/my_list_tile.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
+import 'package:hackathon_project/pages/Stepper.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -69,6 +70,16 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
+             MyListTile(
+              icon: Icons.chat,
+              text: 'Progress',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => StepperScreen(
+                  ))
+              )
+            )
 
           ],
         ),
