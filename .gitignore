@@ -1,0 +1,35 @@
+# General
+*.class
+*.log
+*.pyc
+*.swp
+*.diff
+*.patch
+*.tmp
+*.bak
+*.hprof
+*.orig
+*.rej
+*.swo
+*.user
+*.userprefs
+*.lock
+*.workspace
+*.settings
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+*.jks
+*.keystore
+*.pem
+*.pk8
+
+# IDE related
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
