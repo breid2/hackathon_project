@@ -60,7 +60,7 @@ class MyDrawer extends StatelessWidget {
 
             //at home check list tile
             MyListTile(
-              icon: Icons.list, 
+              icon: Icons.home_work, 
               text: 'At-Home Checklist',
               // onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChecklistPage())),
               onTap: () {
@@ -71,8 +71,8 @@ class MyDrawer extends StatelessWidget {
               },
             ),
              MyListTile(
-              icon: Icons.chat,
-              text: 'Progress',
+              icon: Icons.checklist,
+              text: 'Discharge Checklist',
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
