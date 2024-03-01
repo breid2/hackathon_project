@@ -253,10 +253,8 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
   }
 
   Future<void> _sendSurgeryAddRequest(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     String memberDisplayName;
     DocumentSnapshot userDoc = await FirebaseFirestore.instance
         .collection('users')
@@ -276,20 +274,16 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
   }
 
   Future<void> _sendSurgeryRemoveRequest(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     await surgery.doc(widget.surgeryID).update({
       "members": FieldValue.arrayRemove([memberID]),
     });
   }
 
   Future<void> _deleteSurgery(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     await surgery.doc(widget.surgeryID).delete();
   }
 }

@@ -87,10 +87,7 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
         }
         Map<String, String> membersInfo = {currentUser.uid: ownerDisplayName};
 
-        CollectionReference surgery = _firestore
-            .collection('users')
-            .doc(currentUser.uid)
-            .collection('surgeries');
+        CollectionReference surgery = _firestore.collection('surgeries');
         var result = await surgery.add({
           'surgeryName': _surgeryNameController.text,
           'surgeryStart': Timestamp.fromDate(_startDate!),

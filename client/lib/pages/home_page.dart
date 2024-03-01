@@ -83,8 +83,6 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(currentUser.uid)
                   .collection('surgeries')
                   .where('members', arrayContains: currentUser.uid)
                   .orderBy('surgeryStart', descending: true)
