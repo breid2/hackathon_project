@@ -1,27 +1,46 @@
-
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
+
+void main() {
+  runApp(
+    const MaterialApp(
+      home: PreopInstructionPage(),
+    ),
+  );
+}
 
 class PreopInstructionPage extends StatefulWidget {
   const PreopInstructionPage({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PreopInstructionPageState createState() => _PreopInstructionPageState();
 }
 
 class _PreopInstructionPageState extends State<PreopInstructionPage> {
-  // Controller for the text field
-  final TextEditingController _textFieldController = TextEditingController();
-
-  // List to store checklist items
-  final List<bool> _checklistItems = [false, false, false, false];
-  // final List<bool> _checklistItems = List.generate(4, (index) => false);
-
-  // Variable to store the selected date
+  final TextEditingController _hospitalController = TextEditingController();
   DateTime? _selectedDate;
+  final TextEditingController _surgeonNameController = TextEditingController();
+  final TextEditingController _surgeryController = TextEditingController();
+
+  final List<String> _checklistItems = [
+    "Things To Plan",
+    "Activities To Do",
+    "Essentials To Pack",
+    "Items To Leave At Home",
+  ];
+
+  final Set<String> _checkedItems = <String>{};
+
+  final Map<String, List<String>> _subItems = {
+    "Things To Plan": ["Transportation to hospital", "Organize a ride home after surgery", "Emergency contact person", "House sitter", "Child/pet care"],
+    "Activities To Do": ["Do not eat or drink after midnight day of your surgery", "Read the educational material doctor has given you", "Only take medications to hospital if your doctor has directed you, do not take home medications unless directed by nursing staff"],
+    "Essentials To Pack": ["Phone", "Charger", "Book", "Travel Insurance", "Shoes/slippers", "Clothes", "Toiletries", "List of medications", "Goals of Care", "Personal Directive"],
+    "Items To Leave At Home": ["Valuables", "Weapons", "Alcohol/drugs"]
+  };
+  final Set<String> _expandedItems = <String>{};
 
   @override
   Widget build(BuildContext context) {
@@ -29,184 +48,188 @@ class _PreopInstructionPageState extends State<PreopInstructionPage> {
       appBar: AppBar(
         title: const Text('Pre-operative Instructions'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Form at the top
-            Form(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Text field for entering data
-                  TextFormField(
-                    controller: _textFieldController,
-                    decoration: const InputDecoration(
-                      labelText: 'Hospital',
-                      hintText: 'Fill in surgery location', // Placeholder text
-                      labelStyle: TextStyle(
-                        color: Colors.blue, // You can set the color you prefer
+      body: Scrollbar(
+        thumbVisibility: true,
+        trackVisibility: true, // Always show the scrollbar
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: TextFormField(
+                          style: const TextStyle(fontSize: 14),
+                          controller: _hospitalController,
+                          decoration: const InputDecoration(
+                            labelText: 'Hospital',
+                            hintText: 'Fill in surgery location',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  // Date input field
-                  DateTimeField(
-                    decoration: const InputDecoration(
-                      labelText: 'Select Date',
-                      hintText: 'Select surgery date',
-                    ),
-                    format: DateFormat("yyyy-MM-dd"),
-                    onShowPicker: (context, currentValue) {
-                      return showDatePicker(
-                        context: context,
-                        initialDate: currentValue ?? DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2101),
-                      );
-                    },
-                    onChanged: (selectedDate) {
-                      setState(() {
-                        _selectedDate = selectedDate;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _textFieldController,
-                    decoration: const InputDecoration(
-                      labelText: "Surgeon's Name",
-                      hintText: "Fill in surgeon's name", // Placeholder text
-                      labelStyle: TextStyle(
-                        color: Colors.blue, // You can set the color you prefer
+                      DateTimeField(
+                        style: const TextStyle(fontSize: 14),
+                        decoration: const InputDecoration(
+                          labelText: 'Select Date',
+                          hintText: 'Select surgery date',
+                        ),
+                        format: DateFormat("yyyy-MM-dd"),
+                        onShowPicker: (context, currentValue) {
+                          return showDatePicker(
+                            context: context,
+                            initialDate: currentValue ?? DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101),
+                          );
+                        },
+                        onChanged: (selectedDate) {
+                          setState(() {
+                            _selectedDate = selectedDate;
+                          });
+                        },
                       ),
-                    ),
-                  ),
-                  TextFormField(
-                    controller: _textFieldController,
-                    decoration: const InputDecoration(
-                      labelText: "Surgery",
-                      hintText: "Fill in name of surgery", // Placeholder text
-                      labelStyle: TextStyle(
-                        color: Colors.blue, // You can set the color you prefer
+                      const SizedBox(height: 4),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: TextFormField(
+                          style: const TextStyle(fontSize: 14),
+                          controller: _surgeonNameController,
+                          decoration: const InputDecoration(
+                            labelText: "Surgeon's Name",
+                            hintText: "Fill in surgeon's name",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: TextFormField(
+                          style: const TextStyle(fontSize: 14),
+                          controller: _surgeryController,
+                          decoration: const InputDecoration(
+                            labelText: "Surgery",
+                            hintText: "Fill in name of surgery",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          print('Hospital: ${_hospitalController.text}');
+                          print('Surgery Date: $_selectedDate');
+                          print("Surgeon's Name: ${_surgeonNameController.text}");
+                          print("Surgery: ${_surgeryController.text}");
+                        },
+                        child: const Text('Submit'),
+                      ),
+                    ],
                   ),
-                  // Button to submit form
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle form submission here
-                      print('Hospital: ${_textFieldController.text}');
-                      print('Surgery Date: $_selectedDate');
-                    },
-                    child: Text('Submit'),
+                ),
+                const SizedBox(height: 4),
+                _buildChecklist("Things To Plan", Colors.cyan.shade100),
+                _buildChecklist("Activities To Do", Colors.indigo.shade100),
+                _buildChecklist("Essentials To Pack", Colors.green.shade100),
+                _buildChecklist("Items To Leave At Home", Colors.deepOrange.shade100),
+                const SizedBox(height: 8),
+                // Text display area at the bottom with header and bullets
+                Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "What's Next?",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      Container(
+                        padding: const EdgeInsets.all(4.0),
+                        color: Colors.grey[200],
+                        child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('• Stay calm', style: TextStyle(fontSize: 14)),
+                            Text('• Review hospital admission and discharge information', style: TextStyle(fontSize: 14)),
+                            Text('• Make a list of questions for surgeon/nurse regarding your surgery/hospitalization if you have any', style: TextStyle(fontSize: 14)),
+                            // Add more bullet points as needed
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16), // Spacer
-
-            // Checklist in the middle
-            // const Text(
-            //   'Things To Plan:',
-            //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            // ),
-            // GridView.builder(
-            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //     crossAxisCount: 1, // Change this to 4 for four columns
-            //     crossAxisSpacing: 8.0,
-            //     mainAxisSpacing: 8.0,
-            //   ),
-            //   itemCount: _checklistItems.length,
-            //   shrinkWrap: true,
-            //   itemBuilder: (context, index) {
-            //     return CheckboxListTile(
-            //       title: const Row(
-            //         children: [
-            //           SizedBox(width: 8.0), // Add spacing between text and checkbox
-            //           Text(
-            //             'Transportation to hospital',
-            //             style: TextStyle(
-            //               color: Colors.black, // Set the color you prefer
-            //               fontSize: 14.0, // Adjust the font size
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //       value: _checklistItems[index],
-            //       onChanged: (value) {
-            //         setState(() {
-            //           _checklistItems[index] = value!;
-            //         });
-            //       },
-            //     );
-            //   },
-            // ),
-
-            const Text(
-              'Things To Plan:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            CheckboxListTile(
-              dense: true,
-              title: const Text('Transportation to hospital'),
-              value: _checklistItems[0],
-              onChanged: (value) {
-                setState(() {
-                  _checklistItems[0] = value!;
-                });
-              },
-            ),
-            CheckboxListTile(
-              dense: true,
-              title: const Text('Organize a ride home after surgery'),
-              value: _checklistItems[1],
-              onChanged: (value) {
-                setState(() {
-                  _checklistItems[1] = value!;
-                });
-              },
-            ),
-            CheckboxListTile(
-              dense: true,
-              title: const Text('Emergency contact person'),
-              value: _checklistItems[2],
-              onChanged: (value) {
-                setState(() {
-                  _checklistItems[2] = value!;
-                });
-              },
-            ),
-            CheckboxListTile(
-              dense: true,
-              title: const Text('House sitter'),
-              value: _checklistItems[2],
-              onChanged: (value) {
-                setState(() {
-                  _checklistItems[2] = value!;
-                });
-              },
-            ),
-            CheckboxListTile(
-              dense: true,
-              title: const Text('Child care/Pet care'),
-              value: _checklistItems[2],
-              onChanged: (value) {
-                setState(() {
-                  _checklistItems[2] = value!;
-                });
-              },
-            ),
-            const SizedBox(height: 16), // Spacer
-
-            // Text at the bottom
-            const Text(
-              'This is the text at the bottom of the page.',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildChecklist(String header, Color color) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Card(
+            color: color,
+            child: ExpansionTile(
+              title: Text(
+                header,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              children: _subItems.containsKey(header)
+                  ? _subItems[header]!
+                      .map(
+                        (subItem) => CheckboxListTile(
+                          title: Text(
+                            subItem,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          value: _checkedItems.contains(subItem),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              if (value == true) {
+                                _checkedItems.add(subItem);
+                              } else {
+                                _checkedItems.remove(subItem);
+                              }
+                            });
+                          },
+                        ),
+                      )
+                      .toList()
+                  : [],
+              onExpansionChanged: (bool expanded) {
+                setState(() {
+                  if (expanded) {
+                    _expandedItems.add(header);
+                  } else {
+                    _expandedItems.remove(header);
+                  }
+                });
+              },
+            ),
+          ),
+        ),
+        // const Divider(
+        //   color: Colors.grey,
+        //   thickness: 0.5,
+        // ),
+      ],
     );
   }
 }
