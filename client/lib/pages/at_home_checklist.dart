@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ChecklistPage extends StatefulWidget{
+  const ChecklistPage({super.key});
+
   @override
   _ChecklistPageState createState() => _ChecklistPageState();
 }
 
 class _ChecklistPageState extends State<ChecklistPage> {
   //We will add our checklist logic here
-  List <String> _checklistItems = ["Time Of Surgery", "Medication Instructions", "Don't drink alcohol 24 hrs before ", 
+  final List <String> _checklistItems = ["Time Of Surgery", "Medication Instructions", "Don't drink alcohol 24 hrs before ", 
   "Packing List", "Bowel Prep if req'd", "Remove jewellery", "Shower"];
 
-  Set <String> _checkedItems = Set<String>();
+  final Set <String> _checkedItems = <String>{};
 
   //Additional state to manage expanded items
-  Map<String, List<String>> _subItems = {
+  final Map<String, List<String>> _subItems = {
     "Packing List": ["Photo ID", "Alberta Health Care Card", "Medications", "CPAP Machine (optional)"],
   };
-  Set<String> _expandedItems = Set<String>();
+  final Set<String> _expandedItems = <String>{};
 
   @override
 Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ Widget build(BuildContext context) {
                 ),
         );
       },
-        separatorBuilder: (context, index) => Divider(
+        separatorBuilder: (context, index) => const Divider(
           color: Colors.grey, // Customize the color of the divider
           thickness: 5.0, // Customize the thickness of the divider
         ),

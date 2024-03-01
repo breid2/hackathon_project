@@ -43,6 +43,7 @@ dependencies:
   percent_indicator: ^4.2.3
   step_progress_indicator: ^1.0.2
   flutter_stepindicator: ^0.1.7
+  dropdown_search: ^5.0.6
   
 
 dev_dependencies:

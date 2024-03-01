@@ -182,7 +182,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
         ),
         body: Column(
           children: [
-            Container(
+            SizedBox(
                 height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -204,7 +204,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
               child: ListView.builder(
                 itemCount: 3,
                 itemBuilder: (context, index) {
-                  return Text("List to fill");
+                  return const Text("List to fill");
                 },
               ),
             ),

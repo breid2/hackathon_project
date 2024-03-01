@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/button.dart';
 import 'package:hackathon_project/components/drawer.dart';
+import 'package:hackathon_project/pages/add_new_surgery_page.dart';
 import 'package:hackathon_project/pages/new_surgery_page.dart';
 import 'package:hackathon_project/pages/surgery_home_page.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => NewSurgeryPage(),
+          builder: (context) => const AddNewSurgeryPage(),
         ));
   }
 
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       MaterialPageRoute(
           builder: (context) => SurgeryHomePage(
                 surgeryStart: surgeryDateTime,
-                members: [],
+                members: const [],
                 surgeryName: surgeryName,
                 surgeryID: surgeryID,
                 user: currentUser.uid,
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text("My Discharge"),
+        title: const Text("My Discharge"),
       ),
       drawer: MyDrawer(
         onSignOut: signOut,
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
           //logged in as
           Text(
             "Logged in as: ${currentUser.email!}",
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
 
           const SizedBox(

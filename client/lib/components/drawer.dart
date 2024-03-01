@@ -78,7 +78,7 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChecklistPage()),
+                  MaterialPageRoute(builder: (context) => const ChecklistPage()),
                 );
               },
             ),
@@ -88,7 +88,7 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StepperScreen(
+                  builder: (context) => const StepperScreen(
                   ))
               )
             )
