@@ -146,7 +146,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     leading: Icon(
                       Icons.person_add,
                     ),
-                    title: Text('Add Member'),
+                    title: Text('Add Person'),
                   ),
                 ),
                 const PopupMenuItem(
@@ -155,20 +155,11 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     leading: Icon(
                       Icons.person_remove,
                     ),
-                    title: Text('Remove Member'),
+                    title: Text('Remove Person'),
                   ),
                 ),
                 const PopupMenuItem(
                   value: 2,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.date_range,
-                    ),
-                    title: Text('Change Dates'),
-                  ),
-                ),
-                const PopupMenuItem(
-                  value: 3,
                   child: ListTile(
                     leading: Icon(
                       Icons.delete,
