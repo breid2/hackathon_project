@@ -4,6 +4,7 @@ import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
+import 'package:hackathon_project/pages/preop_instructions.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -55,6 +56,16 @@ class MyDrawer extends StatelessWidget {
                     builder: (context) => const DischargeProgressPage(
                           user: '',
                         )),
+              ),
+            ),
+
+            //chat list tile
+            MyListTile(
+              icon: Icons.checklist,
+              text: 'Pre-operative Instructions',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PreopInstructionPage()),
               ),
             ),
 
