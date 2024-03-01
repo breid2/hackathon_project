@@ -34,19 +34,6 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.pop(context),
             ),
 
-            //chat list tile
-            MyListTile(
-              icon: Icons.chat,
-              text: 'Chat',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ChatPage(
-                          user: '',
-                        )),
-              ),
-            ),
-
             MyListTile(
               icon: Icons.wheelchair_pickup,
               text: 'Discharge Progress',
@@ -65,14 +52,13 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const DateOfDischargePage(
-                        )),
+                    builder: (context) => const DateOfDischargePage()),
               ),
             ),
 
             //at home check list tile
             MyListTile(
-              icon: Icons.home_work, 
+              icon: Icons.home_work,
               text: 'At-Home Checklist',
               // onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChecklistPage())),
               onTap: () {
@@ -82,17 +68,11 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
-             MyListTile(
-              icon: Icons.checklist,
-              text: 'Discharge Checklist',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StepperScreen(
-                  ))
-              )
-            )
-
+            MyListTile(
+                icon: Icons.checklist,
+                text: 'Discharge Checklist',
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => StepperScreen())))
           ],
         ),
 

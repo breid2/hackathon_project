@@ -188,6 +188,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                             MaterialPageRoute(
                                 builder: (context) => ChatPage(
                                       user: currentUser.uid,
+                                      surgeryID: widget.surgeryID,
                                     )));
                       },
                     ),
