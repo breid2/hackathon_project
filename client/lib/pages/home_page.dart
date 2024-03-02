@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: EdgeInsets.all(6),
                                 child: CircularPercentIndicator(
                                   radius: 46,
-                                  percent: post['progress'],
+                                  percent: post['progress'].toDouble(),
                                   animation: true,
                                   progressColor:
                                       Theme.of(context).primaryColorDark,
