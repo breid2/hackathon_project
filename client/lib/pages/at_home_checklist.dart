@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ChecklistPage extends StatefulWidget {
-  const ChecklistPage({super.key});
+  const ChecklistPage(String s, {super.key});
 
   @override
   _ChecklistPageState createState() => _ChecklistPageState();
@@ -13,9 +13,9 @@ class _ChecklistPageState extends State<ChecklistPage> {
 
   final Set<String> _checkedItems = <String>{};
 
-  // Consider adding more categories as per your requirements
+
   final Map<String, List<String>> _subItems = {
-    "Before Surgery": ["Time Of Surgery", "Medication Instructions", "Don't drink alcohol 24 hrs before", "Shower", "Bowel Prep if req'd", "Remove jewellery"],
+    "Before Surgery": ["Verified time of surgery", "followed medication instructions", "no alcohol for 24h", "Showered", "Bowels prepared", "Removed all jewellery"],
     "Packing List": ["Photo ID", "Alberta Health Care Card", "Medications", "CPAP Machine (optional)"],
   };
 
