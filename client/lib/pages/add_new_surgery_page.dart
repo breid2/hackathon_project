@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackathon_project/components/button.dart';
 
 class AddNewSurgeryPage extends StatefulWidget {
   const AddNewSurgeryPage({super.key});
@@ -16,6 +17,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
 
   String selectedHospital = "0";
   String selectedSurgery = "0";
+  DateTime? surgeryDate;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,6 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-
             // Hospital Selection Drop Down Widget
              const Text(
               'Hospital:',
@@ -40,37 +41,40 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
             ),
 
             StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('Hospital').snapshots(),
+              stream: FirebaseFirestore.instance
+                .collection('Hospital')
+                .snapshots(),
               builder: (context, snapshot){
                 List<DropdownMenuItem> hospitalItems = [];
-
                 if (!snapshot.hasData){
                   const CircularProgressIndicator();
                 }
                 else{
-                final hospitals = snapshot.data?.docs.reversed.toList();
-                hospitalItems.add(const DropdownMenuItem(
-                  value: "0",
-                  child: Text('Select')));
+                  final hospitals = snapshot.data?.docs.reversed.toList();
+                  hospitalItems.add(
+                    const DropdownMenuItem(
+                      value: "0",
+                      child: Text('Select')));
 
-                for(var hospital in hospitals!){
-                  hospitalItems.add(DropdownMenuItem(
-                    value: hospital.id,
-                    child: Text(
-                      hospital.id)));
-                } 
-              }
+                  for(var hospital in hospitals!){
+                    hospitalItems.add(
+                      DropdownMenuItem(
+                        value: hospital.id,
+                        child: Text(
+                          hospital.id)));
+                  } 
+                }
 
-              return DropdownButton(
-                items: hospitalItems, 
-                onChanged: (hospitalValue){
-                  setState((){
-                    selectedHospital = hospitalValue;
-                  });
-                print(hospitalValue);
-              },
-              value: selectedHospital,
-              isExpanded: false,
+                return DropdownButton(
+                  items: hospitalItems, 
+                  onChanged: (hospitalValue){
+                    setState((){
+                      selectedHospital = hospitalValue;
+                    });
+                  print(selectedHospital);
+                },
+                value: selectedHospital,
+                isExpanded: false,
               );   
             }
           ),
@@ -87,40 +91,44 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
             ),
 
             StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('Surgery').snapshots(),
+              stream: FirebaseFirestore.instance
+                .collection('Surgery')
+                .snapshots(),
               builder: (context, snapshot){
                 List<DropdownMenuItem> surgeryItems = [];
-
                 if (!snapshot.hasData){
                   const CircularProgressIndicator();
                 }
                 else{
-                final surgeries = snapshot.data?.docs.reversed.toList();
-                surgeryItems.add(const DropdownMenuItem(
-                  value: "0",
-                  child: Text('Select')));
+                  final surgeries = snapshot.data?.docs.reversed.toList();
+                  surgeryItems.add(
+                    const DropdownMenuItem(
+                      value: "0",
+                      child: Text('Select')));
 
-                for(var surgery in surgeries!){
-                  surgeryItems.add(DropdownMenuItem(
-                    value: surgery.id,
-                    child: Text(
-                      surgery.id)));
-                } 
-              }
+                  for(var surgery in surgeries!){
+                    surgeryItems.add(
+                      DropdownMenuItem(
+                        value: surgery.id,
+                        child: Text(
+                          surgery.id)));
+                  } 
+                }
 
-              return DropdownButton(
-                items: surgeryItems, 
-                onChanged: (surgeryValue){
-                  setState((){
-                    selectedSurgery = surgeryValue;
-                  });
-                print(surgeryValue);
-              },
-              value: selectedHospital,
-              isExpanded: false,
+                return DropdownButton(
+                  items: surgeryItems, 
+                  onChanged: (surgeryValue){
+                    setState((){
+                      selectedSurgery = surgeryValue;
+                    });
+                  print(selectedSurgery);
+                },
+                value: selectedSurgery,
+                isExpanded: false,
               );   
             }
           ),
+
             const SizedBox(height: 75),
 
             // Date Picker Widget
@@ -137,12 +145,6 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
               decoration: const InputDecoration(
                 filled: true,
                 prefixIcon: Icon(Icons.calendar_today),
-                //enabledBorder: OutlineInputBorder(
-                //  borderSide: BorderSide(color: Colors.black)
-                //),
-                //focusedBorder: OutlineInputBorder(
-                //  borderSide: BorderSide(color: Colors.blue)
-                //),
               ),
               readOnly: true,
               onTap: (){
@@ -150,33 +152,80 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
               }
             ),  
 
-            const SizedBox(height: 75),
+            const SizedBox(height: 25),
 
             // Create Surgery Button
-            ElevatedButton(
-              onPressed: (){},
-              child: const Text('Create Surgery'),
-            ),         
+            MyButton(onTap: createSurgery, text: 'Create Surgery'),        
           ],
         ),
       ),
     );
   }
 
-// Select Date Method
+
+  // Select Date Method
   Future<void> selectDate() async {
-    DateTime? _picked = await showDatePicker(
+    DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(), 
       firstDate: DateTime(2000), 
       lastDate: DateTime(2100)
     );
 
-    if(_picked != null){
+    if(selectedDate != null){
       setState(() {
-        _dateController.text = _picked.toString().split(" ")[0];
+        _dateController.text = selectedDate.toString().split(" ")[0];
+        surgeryDate = selectedDate;
       });
     }
+  }
 
-  } 
+
+  // Create Surgery Method
+  Future<void> createSurgery() async { 
+    if ((selectedSurgery != "0") && (surgeryDate != null)) {
+      try {
+        User? currentUser = FirebaseAuth.instance.currentUser!;
+        String ownerDisplayName;
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser.uid)
+            .get();
+        if (userDoc.exists) {
+          Map<String, dynamic> userData =
+              userDoc.data() as Map<String, dynamic>;
+          ownerDisplayName = userData['displayName'];
+        } else {
+          ownerDisplayName = ('Unknown User');
+        }
+        Map<String, String> membersInfo = {currentUser.uid: ownerDisplayName};
+
+        CollectionReference surgery = _firestore
+            .collection('users')
+            .doc(currentUser.uid)
+            .collection('surgeries');
+        var result = await surgery.add({
+          'surgeryName': selectedSurgery,
+          'surgeryStart': Timestamp.fromDate(surgeryDate!),
+          "ownerEmail": currentUser.email,
+          "ownerUsername": currentUser.displayName,
+          "timeStamp": Timestamp.now(),
+          "owner": currentUser.uid,
+          "members": [currentUser.uid, 'ity0IuvNBDQTWW6j9oQo73ffgBj2'],
+          "memberInfo": membersInfo,
+        });
+
+        SnackBar(content: Text(currentUser.toString()));
+        Navigator.pop(context);
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error creating surgery: $e')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill out all fields!')),
+      );
+    }
+  }
 }
