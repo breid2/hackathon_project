@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:hackathon_project/pages/discharge_plan_page.dart';
 
 class SurgeryHomePage extends StatefulWidget {
   final String surgeryName;
@@ -224,6 +225,10 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                                 "Before Surgery Checklist",
                                 style: TextStyle(fontSize: 20),
                               ),
+                              Text(
+                                "Pre-Op Checklist",
+                                style: TextStyle(fontSize: 12),
+                              )
                             ],
                           ),
                         ),
@@ -256,7 +261,10 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: GestureDetector(
-                    onTap: () => (),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DischargePlanPage()),
+                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -270,6 +278,10 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                               Text(
                                 "Before Discharge Checklist",
                                 style: TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                "Discharge Plan",
+                                style: TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
