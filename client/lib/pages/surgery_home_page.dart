@@ -175,7 +175,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
         ),
         body: Column(
           children: [
-            Container(
+            SizedBox(
                 height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

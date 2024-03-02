@@ -18,16 +18,16 @@ class _DateOfDischargePageState extends State<DateOfDischargePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expected Date of Discharge')
+        title: const Text('Expected Date of Discharge')
       ),
       body: 
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(child: Text('${DateFormat('EEEE').format(dateOfDischarge.toLocal())}')),
-              Text('${DateFormat.yMMMMd('en_US').format(dateOfDischarge.toLocal())}'),
-              Text('${DateFormat('hh:mm aaa v').format(dateOfDischarge.toLocal())}'),
+              Container(child: Text(DateFormat('EEEE').format(dateOfDischarge.toLocal()))),
+              Text(DateFormat.yMMMMd('en_US').format(dateOfDischarge.toLocal())),
+              Text(DateFormat('hh:mm aaa v').format(dateOfDischarge.toLocal())),
             ],
          )
         )

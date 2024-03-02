@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart';
 
 class NewSurgeryPage extends StatefulWidget {
+  const NewSurgeryPage({super.key});
+
   @override
   _NewSurgeryPageState createState() => _NewSurgeryPageState();
 }
@@ -11,7 +12,7 @@ class NewSurgeryPage extends StatefulWidget {
 class _NewSurgeryPageState extends State<NewSurgeryPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  TextEditingController _surgeryNameController = TextEditingController();
+  final TextEditingController _surgeryNameController = TextEditingController();
   DateTime? _startDate;
 
   _selectStartDate(BuildContext context) async {
@@ -31,7 +32,7 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create a New Surgery'),
+        title: const Text('Create a New Surgery'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -39,16 +40,16 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
           children: [
             TextField(
               controller: _surgeryNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Surgery Name',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             InkWell(
               onTap: () => _selectStartDate(context),
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Start Date',
                 ),
                 child: Text(
@@ -58,10 +59,10 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
                 ),
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: _createSurgery,
-              child: Text('Create Surgery'),
+              child: const Text('Create Surgery'),
             ),
           ],
         ),
@@ -108,7 +109,7 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill out all fields!')),
+        const SnackBar(content: Text('Please fill out all fields!')),
       );
     }
   }
