@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                         Pattern pattern =
                             r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,}$';
-                        RegExp regex = new RegExp(pattern.toString());
+                        RegExp regex = RegExp(pattern.toString());
                         if (!regex.hasMatch(value)) {
                           return 'Invalid email';
                         }
@@ -162,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
 
       // Extracting display name from email
-      String displayName = _fNameController.text.trim() + " " + _lNameController.text.trim();
+      String displayName = "${_fNameController.text.trim()} ${_lNameController.text.trim()}";
       displayName = displayName[0].toUpperCase() + displayName.substring(1);
 
       // If the account creation is successful, add the user details to Firestore

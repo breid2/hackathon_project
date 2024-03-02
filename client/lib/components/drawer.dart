@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
-import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
@@ -87,7 +86,7 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FAQPage(),
+                  builder: (context) => const FAQPage(),
                 ),
               ),
             )

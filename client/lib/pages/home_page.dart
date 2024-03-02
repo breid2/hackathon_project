@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_project/components/button.dart';
 import 'package:hackathon_project/components/drawer.dart';
 import 'package:hackathon_project/pages/add_new_surgery_page.dart';
-import 'package:hackathon_project/pages/new_surgery_page.dart';
 import 'package:hackathon_project/pages/surgery_home_page.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -77,7 +75,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: goToNewSurgeryPage, child: Text('Add Surgery')),
+                onPressed: goToNewSurgeryPage, child: const Text('Add Surgery')),
           ),
 
           //Show existing surgeries
@@ -101,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                           DateFormat('yyyy-MM-dd').format(surgeryStartDate);
                       return Container(
                         height: 120,
-                        margin: EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Theme.of(context).primaryColorDark,
@@ -153,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
                                 child: CircularPercentIndicator(
                                   radius: 46,
                                   percent: post['progress'],
@@ -162,8 +160,8 @@ class _HomePageState extends State<HomePage> {
                                       Theme.of(context).primaryColorDark,
                                   backgroundColor: Theme.of(context).hoverColor,
                                   center: Text(
-                                    progessPercent.toString() + '%',
-                                    style: TextStyle(fontSize: 28),
+                                    '$progessPercent%',
+                                    style: const TextStyle(fontSize: 28),
                                   ),
                                 ),
                               )

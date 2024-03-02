@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class FAQPage extends StatefulWidget {
+  const FAQPage({super.key});
+
   @override
   _FAQPageState createState() => _FAQPageState();
 }
 
 class _FAQPageState extends State<FAQPage> {
-  List<Item> _data = generateItems(5);
+  final List<Item> _data = generateItems(5);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FAQ'),
+        title: const Text('FAQ'),
       ),
       body: ListView(
         children: _data.map<Widget>((Item item) {

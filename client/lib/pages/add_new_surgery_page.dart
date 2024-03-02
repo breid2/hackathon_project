@@ -198,7 +198,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           'hospital': selectedHospital,
         });
         print(result.id);
-        MoveData myHomePage = MoveData();
+        MoveData myHomePage = const MoveData();
         MoveData.moveSurgeryDataToUserEpisode(result.id);
 
         SnackBar(content: Text(currentUser.toString()));

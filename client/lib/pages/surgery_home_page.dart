@@ -212,7 +212,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChecklistPage('Before Surgery')),
+                      MaterialPageRoute(builder: (context) => const ChecklistPage('Before Surgery')),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -315,7 +315,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChecklistPage('AtHome')),
+                      MaterialPageRoute(builder: (context) => const ChecklistPage('AtHome')),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,

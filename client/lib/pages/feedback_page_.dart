@@ -20,7 +20,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
     // confirmation messate
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Thank you for your feedback!')),
+      const SnackBar(content: Text('Thank you for your feedback!')),
     );
 
     feedbackTextController.clear();
@@ -42,7 +42,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             TextFormField(
               controller: feedbackTextController,
               maxLines: 5, // Increase maxLines for better text input for feedback
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your feedback here...', border: OutlineInputBorder(), ), ),
             const SizedBox(height: 20),
 
