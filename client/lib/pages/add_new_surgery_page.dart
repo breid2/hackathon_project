@@ -27,120 +27,123 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Hospital Selection Drop Down Widget
-            const Text(
-              'Hospital:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('Hospital')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  List<DropdownMenuItem> hospitalItems = [];
-                  if (!snapshot.hasData) {
-                    const CircularProgressIndicator();
-                  } else {
-                    final hospitals = snapshot.data?.docs.reversed.toList();
-                    hospitalItems.add(const DropdownMenuItem(
-                        value: "0", child: Text('Select')));
-
-                    for (var hospital in hospitals!) {
-                      hospitalItems.add(DropdownMenuItem(
-                          value: hospital.id, child: Text(hospital.id)));
-                    }
-                  }
-
-                  return DropdownButton(
-                    items: hospitalItems,
-                    onChanged: (hospitalValue) {
-                      setState(() {
-                        selectedHospital = hospitalValue;
-                      });
-                      print(selectedHospital);
-                    },
-                    value: selectedHospital,
-                    isExpanded: false,
-                  );
-                }),
-
-            const SizedBox(height: 75),
-
-            // Surgery Selection Drop Down Widget
-            const Text(
-              'Surgery:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('Surgery')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  List<DropdownMenuItem> surgeryItems = [];
-                  if (!snapshot.hasData) {
-                    const CircularProgressIndicator();
-                  } else {
-                    final surgeries = snapshot.data?.docs.reversed.toList();
-                    surgeryItems.add(const DropdownMenuItem(
-                        value: "0", child: Text('Select')));
-
-                    for (var surgery in surgeries!) {
-                      surgeryItems.add(DropdownMenuItem(
-                          value: surgery.id, child: Text(surgery.id)));
-                    }
-                  }
-
-                  return DropdownButton(
-                    items: surgeryItems,
-                    onChanged: (surgeryValue) {
-                      setState(() {
-                        selectedSurgery = surgeryValue;
-                      });
-                      print(selectedSurgery);
-                    },
-                    value: selectedSurgery,
-                    isExpanded: false,
-                  );
-                }),
-
-            const SizedBox(height: 75),
-
-            // Date Picker Widget
-            const Text(
-              'Surgery Date:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            TextField(
-                controller: _dateController,
-                decoration: const InputDecoration(
-                  filled: true,
-                  prefixIcon: Icon(Icons.calendar_today),
+        child: 
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Hospital Selection Drop Down Widget
+              const Text(
+                'Hospital:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                readOnly: true,
-                onTap: () {
-                  selectDate();
-                }),
-
-            const SizedBox(height: 25),
-
-            // Create Surgery Button
-            MyButton(onTap: createSurgery, text: 'Create Surgery'),
-          ],
+              ),
+          
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Hospital')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    List<DropdownMenuItem> hospitalItems = [];
+                    if (!snapshot.hasData) {
+                      const CircularProgressIndicator();
+                    } else {
+                      final hospitals = snapshot.data?.docs.reversed.toList();
+                      hospitalItems.add(const DropdownMenuItem(
+                          value: "0", child: Text('Select')));
+          
+                      for (var hospital in hospitals!) {
+                        hospitalItems.add(DropdownMenuItem(
+                            value: hospital.id, child: Text(hospital.id)));
+                      }
+                    }
+          
+                    return DropdownButton(
+                      items: hospitalItems,
+                      onChanged: (hospitalValue) {
+                        setState(() {
+                          selectedHospital = hospitalValue;
+                        });
+                        print(selectedHospital);
+                      },
+                      value: selectedHospital,
+                      isExpanded: false,
+                    );
+                  }),
+          
+              const SizedBox(height: 75),
+          
+              // Surgery Selection Drop Down Widget
+              const Text(
+                'Surgery:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Surgery')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    List<DropdownMenuItem> surgeryItems = [];
+                    if (!snapshot.hasData) {
+                      const CircularProgressIndicator();
+                    } else {
+                      final surgeries = snapshot.data?.docs.reversed.toList();
+                      surgeryItems.add(const DropdownMenuItem(
+                          value: "0", child: Text('Select')));
+          
+                      for (var surgery in surgeries!) {
+                        surgeryItems.add(DropdownMenuItem(
+                            value: surgery.id, child: Text(surgery.id)));
+                      }
+                    }
+          
+                    return DropdownButton(
+                      items: surgeryItems,
+                      onChanged: (surgeryValue) {
+                        setState(() {
+                          selectedSurgery = surgeryValue;
+                        });
+                        print(selectedSurgery);
+                      },
+                      value: selectedSurgery,
+                      isExpanded: false,
+                    );
+                  }),
+          
+              const SizedBox(height: 75),
+          
+              // Date Picker Widget
+              const Text(
+                'Surgery Date:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          
+              TextField(
+                  controller: _dateController,
+                  decoration: const InputDecoration(
+                    filled: true,
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
+                  readOnly: true,
+                  onTap: () {
+                    selectDate();
+                  }),
+          
+              const SizedBox(height: 25),
+          
+              // Create Surgery Button
+              MyButton(onTap: createSurgery, text: 'Create Surgery'),
+            ],
+          ),
         ),
       ),
     );
@@ -192,6 +195,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           "members": [currentUser.uid, 'ity0IuvNBDQTWW6j9oQo73ffgBj2'],
           "memberInfo": membersInfo,
           'progress': 0.0,
+          'hospital': selectedHospital,
         });
         print(result.id);
         MoveData myHomePage = MoveData();

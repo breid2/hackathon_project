@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -195,60 +196,154 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   ],
                 )),
             Expanded(
-              child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 120,
-                    margin: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).primaryColorDark,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
+                child: Column(
+              children: [
+                Container(
+                  height: 120,
+                  margin: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).primaryColorDark,
+                      width: 1.0,
                     ),
-                    child: GestureDetector(
-                      onTap: () => (),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  checklists[index],
-                                  style: TextStyle(fontSize: 32),
-                                ),
-                              ],
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: GestureDetector(
+                    onTap: () => (),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(2),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Before Surgery Checklist",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: CircularPercentIndicator(
+                            radius: 46,
+                            percent: 0.5,
+                            animation: true,
+                            progressColor: Theme.of(context).primaryColorDark,
+                            backgroundColor: Theme.of(context).hoverColor,
+                            center: const Text(
+                              '50%',
+                              style: TextStyle(fontSize: 28),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(6),
-                            child: CircularPercentIndicator(
-                              radius: 46,
-                              percent: 0.5,
-                              animation: true,
-                              progressColor: Theme.of(context).primaryColorDark,
-                              backgroundColor: Theme.of(context).hoverColor,
-                              center: Text(
-                                '50%',
-                                style: TextStyle(fontSize: 28),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
-                  );
-                  ;
-                },
-              ),
-            ),
+                  ),
+                ),
+                Container(
+                  height: 120,
+                  margin: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).primaryColorDark,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: GestureDetector(
+                    onTap: () => (),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(2),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Before Discharge Checklist",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: CircularPercentIndicator(
+                            radius: 46,
+                            percent: 0.5,
+                            animation: true,
+                            progressColor: Theme.of(context).primaryColorDark,
+                            backgroundColor: Theme.of(context).hoverColor,
+                            center: const Text(
+                              '50%',
+                              style: TextStyle(fontSize: 28),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 120,
+                  margin: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).primaryColorDark,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChecklistPage()),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(2),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "At Home Checklist",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: CircularPercentIndicator(
+                            radius: 46,
+                            percent: 0.5,
+                            animation: true,
+                            progressColor: Theme.of(context).primaryColorDark,
+                            backgroundColor: Theme.of(context).hoverColor,
+                            center: const Text(
+                              '50%',
+                              style: TextStyle(fontSize: 28),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )),
           ],
         ));
   }

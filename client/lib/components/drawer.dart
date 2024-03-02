@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
-import 'package:hackathon_project/pages/chat_page.dart';
+// import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
+import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -33,6 +34,18 @@ class MyDrawer extends StatelessWidget {
               icon: Icons.home,
               text: 'Home',
               onTap: () => Navigator.pop(context),
+            ),
+
+            //Welcome list tile
+            MyListTile(
+              icon: Icons.handshake,
+              text: 'Welcome',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WelcomePage(),
+                ),
+              ),
             ),
 
             MyListTile(
@@ -75,22 +88,19 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ChecklistPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const ChecklistPage()),
                 );
               },
             ),
 
-             MyListTile(
-              icon: Icons.checklist,
-              text: 'Discharge Checklist',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const StepperScreen(
-                  ))
-              )
-            )
-
+            MyListTile(
+                icon: Icons.checklist,
+                text: 'Discharge Checklist',
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StepperScreen())))
           ],
         ),
 
