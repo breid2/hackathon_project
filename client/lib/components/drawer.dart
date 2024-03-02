@@ -4,6 +4,7 @@ import 'package:hackathon_project/components/my_list_tile.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
+import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
 
@@ -66,6 +67,16 @@ class MyDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const DateOfDischargePage()),
+              ),
+            ),
+
+            MyListTile(
+              icon: Icons.list_rounded,
+              text: 'Discharge Plan',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DischargePlanPage()),
               ),
             ),
 
