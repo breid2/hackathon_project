@@ -22,10 +22,17 @@ class _WelcomePageState extends State<WelcomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(height: 20),
-            const Text(
-              'Welcome to AHS. Please watch the welcome video',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Welcome to AHS.\nPlease watch the welcome video',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 20),
             Container(
