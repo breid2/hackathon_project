@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:hackathon_project/pages/check_list.dart';
+
 
 class SurgeryHomePage extends StatefulWidget {
   final String surgeryName;
@@ -212,7 +212,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChecklistPage('BeforeSurgery')),
+                      MaterialPageRoute(builder: (context) => ChecklistPage('Before Surgery')),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -264,7 +264,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                                          
                       context,
                       MaterialPageRoute(
-                      builder: (context) => const ChecklistPage('BeforeSurgery')),
+                      builder: (context) => const ChecklistPage('Before Discharge')),
                       
                     ),
                     child: Row(
