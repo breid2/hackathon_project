@@ -6,7 +6,9 @@ import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
+import 'package:hackathon_project/pages/feedback_page_.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
+import 'package:hackathon_project/pages/feedback_page.dart';
 <<<<<<< Updated upstream
 import 'package:hackathon_project/pages/Stepper.dart';
 import 'package:hackathon_project/pages/preop_instructions.dart';
@@ -111,6 +113,21 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
+
+            MyListTile(
+              icon: Icons.feedback,
+              text: 'Feedback',
+              onTap: () => Navigator.push(
+              context,
+                 MaterialPageRoute(
+                    builder: (context) => const FeedbackPage(),
+            
+                    ),
+                ),
+              ),
+
+
+            
           ],
         ),
         const SizedBox(
