@@ -102,7 +102,7 @@ class _NewSurgeryPageState extends State<NewSurgeryPage> {
           "DischargeDate": Timestamp.now(),
         });
         print(result.id);
-        MoveData myHomePage = MoveData();
+        MoveData myHomePage = const MoveData();
         MoveData.moveSurgeryDataToUserEpisode(result.id);
 
 

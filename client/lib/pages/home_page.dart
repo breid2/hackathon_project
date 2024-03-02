@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: goToNewSurgeryPage, child: Text('Add Surgery')),
+                onPressed: goToNewSurgeryPage, child: const Text('Add Surgery')),
           ),
 
           //Show existing surgeries
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                           DateFormat('yyyy-MM-dd').format(surgeryStartDate);
                       return Container(
                         height: 120,
-                        margin: EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Theme.of(context).primaryColorDark,
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
                                 child: CircularPercentIndicator(
                                   radius: 46,
                                   percent: post['progress'].toDouble(),
@@ -162,8 +162,8 @@ class _HomePageState extends State<HomePage> {
                                       Theme.of(context).primaryColorDark,
                                   backgroundColor: Theme.of(context).hoverColor,
                                   center: Text(
-                                    progessPercent.toString() + '%',
-                                    style: TextStyle(fontSize: 28),
+                                    '$progessPercent%',
+                                    style: const TextStyle(fontSize: 28),
                                   ),
                                 ),
                               )

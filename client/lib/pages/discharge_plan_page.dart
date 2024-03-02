@@ -89,16 +89,16 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Discharge Plan"),
+          title: const Text("Discharge Plan"),
         ),
         body: Container( // Container added here
-        padding: EdgeInsets.all(8.0), // Optional: Add padding if needed
+        padding: const EdgeInsets.all(8.0), // Optional: Add padding if needed
         child:
           SingleChildScrollView( // Allows for scrolling when content doesn't fit on the screen
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Card(
                     child: ListTile(
@@ -108,7 +108,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: DataTable(
                     columns: const [
                       DataColumn(label: Text('Patient Name')),
@@ -126,7 +126,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                 ),
                 // Names and Roles table
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: DataTable(
                     columns: const [
                       DataColumn(label: Text('Name')),
@@ -141,7 +141,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'The Primary Objective',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -149,12 +149,12 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                 ),
                 // Objective and Success Metrics table
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Scrollbar(
                     thumbVisibility: true,
                     trackVisibility: true, // Set to true if you want the scrollbar to always be visible
                     thickness: 6.0, // Can be adjusted for the scrollbar thickness
-                    radius: Radius.circular(5.0), // Can be adjusted for the scrollbar radius
+                    radius: const Radius.circular(5.0), // Can be adjusted for the scrollbar radius
                     scrollbarOrientation: ScrollbarOrientation.bottom, // Positions scrollbar at the bottom
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -163,7 +163,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                           DataColumn(label: Text('Objective'), numeric: false),
                           DataColumn(label: Text('Success Metrics'), numeric: false),
                         ],
-                        rows: [
+                        rows: const [
                           DataRow(
                             cells: [
                               DataCell(Text('To go home and recover from surgery and pain is managed.')),
@@ -188,7 +188,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Task List',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -199,7 +199,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                 _buildChecklist(CupertinoIcons.heart_circle, "Medically Stable", _itemsDecriptions["Medically Stable"]!, Colors.red.shade100),
                 _buildChecklist(Icons.run_circle_outlined, "Mobilize", _itemsDecriptions["Mobilize"]!, Colors.red.shade100),
                 _buildChecklist(Icons.adjust, "Pain", _itemsDecriptions["Pain"]!, Colors.red.shade100),
-                _buildChecklist(IconData(0xe1d7, fontFamily: 'MaterialIcons'), "Trasportation", _itemsDecriptions["Trasportation"]!, Colors.teal.shade100),
+                _buildChecklist(const IconData(0xe1d7, fontFamily: 'MaterialIcons'), "Trasportation", _itemsDecriptions["Trasportation"]!, Colors.teal.shade100),
                 _buildChecklist(Icons.medication_rounded, "Medication", _itemsDecriptions["Medication"]!, Colors.teal.shade100),
                 _buildChecklist(Icons.back_hand_outlined, "Physiotherapy", _itemsDecriptions["Physiotherapy"]!, Colors.teal.shade100),
                 _buildChecklist(Icons.widgets_rounded, "Supplies", _itemsDecriptions["Supplies"]!, Colors.teal.shade100),
@@ -256,7 +256,7 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
                               },
                             ),
                           )
-                          .toList(),
+                          ,
                     ]
                   : [],
               onExpansionChanged: (bool expanded) {

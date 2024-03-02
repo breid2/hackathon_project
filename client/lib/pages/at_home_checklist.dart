@@ -10,7 +10,7 @@ class ChecklistPage extends StatefulWidget {
 class _ChecklistPageState extends State<ChecklistPage> {
   //We will add our checklist logic here
 
-  List<String> _checklistItems = [
+  final List<String> _checklistItems = [
     "Time Of Surgery",
     "Medication Instructions",
     "Don't drink alcohol 24 hrs before ",
@@ -91,8 +91,8 @@ class _ChecklistPageState extends State<ChecklistPage> {
                   ),
           );
         },
-        separatorBuilder: (context, index) => Divider(
-          color: const Color.fromARGB(
+        separatorBuilder: (context, index) => const Divider(
+          color: Color.fromARGB(
               255, 156, 41, 41), // Customize the color of the divider
 
           thickness: 5.0, // Customize the thickness of the divider

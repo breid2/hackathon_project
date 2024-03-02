@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MoveData extends StatelessWidget {
+  const MoveData({super.key});
+
   static Future<void> moveSurgeryDataToUserEpisode(String episodeId) async {
     try {
 
