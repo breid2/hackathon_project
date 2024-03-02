@@ -102,7 +102,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           
                       for (var surgery in surgeries!) {
                         surgeryItems.add(DropdownMenuItem(
-                            value: surgery.id, child: Text(surgery.id)));
+                            value: surgery.id, child: Text(surgery['name'])));
                       }
                     }
           
