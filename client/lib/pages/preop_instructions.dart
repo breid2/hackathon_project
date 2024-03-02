@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(
@@ -20,18 +20,9 @@ class PreopInstructionPage extends StatefulWidget {
 }
 
 class _PreopInstructionPageState extends State<PreopInstructionPage> {
-  final TextEditingController _hospitalController = TextEditingController();
-  DateTime? _selectedDate;
-  final TextEditingController _surgeonNameController = TextEditingController();
-  final TextEditingController _surgeryController = TextEditingController();
 
-  final List<String> _checklistItems = [
-    "Things To Plan",
-    "Activities To Do",
-    "Essentials To Pack",
-    "Items To Leave At Home",
-  ];
-
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  
   final Set<String> _checkedItems = <String>{};
 
   final Map<String, List<String>> _subItems = {
@@ -42,6 +33,9 @@ class _PreopInstructionPageState extends State<PreopInstructionPage> {
   };
   final Set<String> _expandedItems = <String>{};
 
+  // Add a reference to the surgery collection
+  final CollectionReference surgeryCollection = FirebaseFirestore.instance.collection('surgeries');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +44,7 @@ class _PreopInstructionPageState extends State<PreopInstructionPage> {
       ),
       body: Scrollbar(
         thumbVisibility: true,
-        trackVisibility: true, // Always show the scrollbar
+        trackVisibility: true,
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Padding(
@@ -58,86 +52,162 @@ class _PreopInstructionPageState extends State<PreopInstructionPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: TextFormField(
-                          style: const TextStyle(fontSize: 14),
-                          controller: _hospitalController,
-                          decoration: const InputDecoration(
-                            labelText: 'Hospital',
-                            hintText: 'Fill in surgery location',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
+                // Display surgery data from the database
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('surgeries')
+                      .where('owner', isEqualTo: currentUser.uid)
+                      .snapshots(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+
+                    final surgeries = snapshot.data?.docs; // Use safe navigation
+
+                    if (surgeries == null || surgeries.isEmpty) {
+                      return const Text('No data available');
+                    }
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: surgeries.map((doc) {
+                        var data = doc.data() as Map<String, dynamic>;
+
+                        DateTime surgeryDateTime = data['surgeryDateTime'] != null && data['surgeryDateTime'] is Timestamp
+                            ? (data['surgeryDateTime'] as Timestamp).toDate()
+                            : DateTime.now();
+
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Scheduled Surgery:",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      DateTimeField(
-                        style: const TextStyle(fontSize: 14),
-                        decoration: const InputDecoration(
-                          labelText: 'Select Date',
-                          hintText: 'Select surgery date',
-                        ),
-                        format: DateFormat("yyyy-MM-dd"),
-                        onShowPicker: (context, currentValue) {
-                          return showDatePicker(
-                            context: context,
-                            initialDate: currentValue ?? DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2101),
-                          );
-                        },
-                        onChanged: (selectedDate) {
-                          setState(() {
-                            _selectedDate = selectedDate;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 4),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: TextFormField(
-                          style: const TextStyle(fontSize: 14),
-                          controller: _surgeonNameController,
-                          decoration: const InputDecoration(
-                            labelText: "Surgeon's Name",
-                            hintText: "Fill in surgeon's name",
-                            labelStyle: TextStyle(
-                              color: Colors.black,
+                            const SizedBox(height: 8),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black, // Choose the border color
+                                  width: 1.0, // Choose the border width
+                                ),
+                                borderRadius: const BorderRadius.all(Radius.circular(8.0)), // Adjust the border radius
+                              ),
+                              padding: const EdgeInsets.all(8.0), // Add padding inside the container
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start, // Adjust alignment as needed
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      style: DefaultTextStyle.of(context).style,
+                                      children: <TextSpan>[
+                                        const TextSpan(
+                                          text: "Hospital",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                            color: Colors.blue, // Choose a color that fits your design
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ": ${data['hospital']}",
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.blue, // Match the color with the bold part
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: DefaultTextStyle.of(context).style,
+                                      children: <TextSpan>[
+                                        const TextSpan(
+                                          text: "Surgery Start",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ": $surgeryDateTime",
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: DefaultTextStyle.of(context).style,
+                                      children: <TextSpan>[
+                                        const TextSpan(
+                                          text: "Surgeon Name",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ": ${data['surgeonName']}",
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: DefaultTextStyle.of(context).style,
+                                      children: <TextSpan>[
+                                        const TextSpan(
+                                          text: "Surgery Name",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ": ${data['surgeryName']}",
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: TextFormField(
-                          style: const TextStyle(fontSize: 14),
-                          controller: _surgeryController,
-                          decoration: const InputDecoration(
-                            labelText: "Surgery",
-                            hintText: "Fill in name of surgery",
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('Hospital: ${_hospitalController.text}');
-                          print('Surgery Date: $_selectedDate');
-                          print("Surgeon's Name: ${_surgeonNameController.text}");
-                          print("Surgery: ${_surgeryController.text}");
-                        },
-                        child: const Text('Submit'),
-                      ),
-                    ],
-                  ),
+
+
+
+                            const SizedBox(height: 8),
+                          ],
+                        );
+                      }).toList(),
+                    );
+                  },
                 ),
+                
                 const SizedBox(height: 4),
                 _buildChecklist("Things To Plan", Colors.cyan.shade100),
                 _buildChecklist("Activities To Do", Colors.indigo.shade100),
@@ -225,10 +295,6 @@ class _PreopInstructionPageState extends State<PreopInstructionPage> {
             ),
           ),
         ),
-        // const Divider(
-        //   color: Colors.grey,
-        //   thickness: 0.5,
-        // ),
       ],
     );
   }
