@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                       //get the surgery
                       final post = snapshot.data!.docs[index];
                       DateTime surgeryStartDate = post["surgeryStart"].toDate();
-                      int progessPercent = (post['progress']) * 100 as int;
+                      double progessPercent = (post['progress']) * 100 as double;
                       String formattedDate =
                           DateFormat('yyyy-MM-dd').format(surgeryStartDate);
                       return Container(
