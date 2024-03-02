@@ -66,17 +66,17 @@ class MyDrawer extends StatelessWidget {
             //   ),
             // ),
 
-            MyListTile(
-              icon: Icons.wheelchair_pickup,
-              text: 'Discharge Progress',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const DischargeProgressPage(
-                          user: '',
-                        )),
-              ),
-            ),
+            // MyListTile(
+            //   icon: Icons.wheelchair_pickup,
+            //   text: 'Discharge Progress',
+            //   onTap: () => Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const DischargeProgressPage(
+            //               user: '',
+            //             )),
+            //   ),
+            // ),
 
             MyListTile(
               icon: Icons.calendar_today,
