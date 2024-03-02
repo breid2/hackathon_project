@@ -64,15 +64,22 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChecklistPage()),
+                  MaterialPageRoute(builder: (context) => const ChecklistPage()),
                 );
               },
             ),
-            MyListTile(
-                icon: Icons.checklist,
-                text: 'Discharge Checklist',
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => StepperScreen())))
+
+             MyListTile(
+              icon: Icons.checklist,
+              text: 'Discharge Checklist',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const StepperScreen(
+                  ))
+              )
+            )
+
           ],
         ),
 

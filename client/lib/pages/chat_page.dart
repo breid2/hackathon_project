@@ -38,7 +38,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(title: Text("Chat Service")),
+      appBar: AppBar(title: const Text("Chat Service")),
       body: Column(
         children: [
           //messages
@@ -115,8 +115,7 @@ class _ChatPageState extends State<ChatPage> {
                     ? MainAxisAlignment.end
                     : MainAxisAlignment.start,
             children: [
-              Text(DateFormat('MMM d, hh:mm').format(messageTime) +
-                  " - " +
+              Text("${DateFormat('MMM d, hh:mm').format(messageTime)} - " +
                   data['senderDisplayName']),
               ChatBubble(
                 message: data['message'],
