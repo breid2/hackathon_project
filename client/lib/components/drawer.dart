@@ -4,6 +4,7 @@ import 'package:hackathon_project/components/my_list_tile.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
+import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
 import 'package:hackathon_project/pages/preop_instructions.dart';
@@ -49,6 +50,17 @@ class MyDrawer extends StatelessWidget {
             ),
 
             MyListTile(
+              icon: Icons.checklist,
+              text: 'Pre-operative Instructions',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const PreopInstructionPage(
+                        )),
+              ),
+            ),
+
+            MyListTile(
               icon: Icons.wheelchair_pickup,
               text: 'Discharge Progress',
               onTap: () => Navigator.push(
@@ -57,6 +69,26 @@ class MyDrawer extends StatelessWidget {
                     builder: (context) => const DischargeProgressPage(
                           user: '',
                         )),
+              ),
+            ),
+
+            MyListTile(
+              icon: Icons.calendar_today,
+              text: 'Expected Date of Discharge',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DateOfDischargePage()),
+              ),
+            ),
+
+            MyListTile(
+              icon: Icons.list_rounded,
+              text: 'Discharge Plan',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DischargePlanPage()),
               ),
             ),
 
