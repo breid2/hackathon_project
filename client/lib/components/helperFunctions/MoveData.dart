@@ -66,7 +66,18 @@ class MoveData extends StatelessWidget {
 
             // Optionally, you may want to delete the original surgery document
             print('Data moved successfully for stage: $stage');
+            await FirebaseFirestore.instance
+              .collection('surgeries')
+              .doc(episodeId)
+              .collection(stage)
+              .doc(stage)
+              .set({
+                'Progress': 0,
+            });
+
+
           }
+
         }
       } catch (error) {
       print('Error moving data for stage $stage: $error');
