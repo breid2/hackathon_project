@@ -7,6 +7,7 @@ import 'package:hackathon_project/pages/add_new_surgery_page.dart';
 import 'package:hackathon_project/pages/new_surgery_page.dart';
 import 'package:hackathon_project/pages/surgery_home_page.dart';
 import 'package:intl/intl.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,14 +74,16 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(children: [
           //Create new surgery
-          MyButton(onTap: goToNewSurgeryPage, text: 'Add Surgery'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: goToNewSurgeryPage, child: Text('Add Surgery')),
+          ),
 
           //Show existing surgeries
           Expanded(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(currentUser.uid)
                   .collection('surgeries')
                   .where('members', arrayContains: currentUser.uid)
                   .orderBy('surgeryStart', descending: true)
@@ -96,13 +99,14 @@ class _HomePageState extends State<HomePage> {
                       String formattedDate =
                           DateFormat('yyyy-MM-dd').format(surgeryStartDate);
                       return Container(
+                        height: 120,
+                        margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.grey, // Set border color here
-                            width: 1.0, // Set border width here
+                            color: Theme.of(context).primaryColorDark,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(
-                              8.0), // Set border radius here
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: GestureDetector(
                           onTap: () => goToSurgeryHomePage(
@@ -112,11 +116,44 @@ class _HomePageState extends State<HomePage> {
                             post.id,
                             post["surgeryStart"],
                           ),
-                          child: ListTile(
-                            title: Text(
-                              post["surgeryName"],
-                            ),
-                            subtitle: Text(formattedDate),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      post["surgeryName"],
+                                      style: TextStyle(fontSize: 32),
+                                    ),
+                                    Text(
+                                      formattedDate,
+                                      style: TextStyle(fontSize: 24),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(6),
+                                child: CircularPercentIndicator(
+                                  radius: 46,
+                                  percent: 0.5,
+                                  animation: true,
+                                  progressColor:
+                                      Theme.of(context).primaryColorDark,
+                                  backgroundColor: Theme.of(context).hoverColor,
+                                  center: Text(
+                                    '50%',
+                                    style: TextStyle(fontSize: 28),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       );

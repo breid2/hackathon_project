@@ -8,9 +8,12 @@ import 'package:hackathon_project/components/chat_service.dart';
 
 class ChatPage extends StatefulWidget {
   final String user;
+
+  final surgeryID;
   const ChatPage({
     super.key,
     required this.user,
+    required this.surgeryID,
   });
 
   @override
@@ -25,7 +28,7 @@ class _ChatPageState extends State<ChatPage> {
   void sendMessage() async {
     //Check if there is a message to send
     if (_messageController.text.isNotEmpty) {
-      await _chatService.sendMessage(_messageController.text);
+      await _chatService.sendMessage(_messageController.text, widget.surgeryID);
       //Clear the controller
       _messageController.clear();
     }
@@ -60,7 +63,7 @@ class _ChatPageState extends State<ChatPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: StreamBuilder(
-        stream: _chatService.getMessages(currentUserID),
+        stream: _chatService.getMessages(currentUserID, widget.surgeryID),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Error${snapshot.error}');

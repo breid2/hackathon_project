@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class SurgeryHomePage extends StatefulWidget {
   final String surgeryName;
@@ -121,6 +122,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var checklists = ['Pre-Operation', 'Post-Operation', 'At Home'];
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -146,7 +148,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     leading: Icon(
                       Icons.person_add,
                     ),
-                    title: Text('Add Member'),
+                    title: Text('Add Person'),
                   ),
                 ),
                 const PopupMenuItem(
@@ -155,20 +157,11 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     leading: Icon(
                       Icons.person_remove,
                     ),
-                    title: Text('Remove Member'),
+                    title: Text('Remove Person'),
                   ),
                 ),
                 const PopupMenuItem(
                   value: 2,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.date_range,
-                    ),
-                    title: Text('Change Dates'),
-                  ),
-                ),
-                const PopupMenuItem(
-                  value: 3,
                   child: ListTile(
                     leading: Icon(
                       Icons.delete,
@@ -195,6 +188,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                             MaterialPageRoute(
                                 builder: (context) => ChatPage(
                                       user: currentUser.uid,
+                                      surgeryID: widget.surgeryID,
                                     )));
                       },
                     ),
@@ -204,7 +198,54 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
               child: ListView.builder(
                 itemCount: 3,
                 itemBuilder: (context, index) {
-                  return const Text("List to fill");
+                  return Container(
+                    height: 120,
+                    margin: EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Theme.of(context).primaryColorDark,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: GestureDetector(
+                      onTap: () => (),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  checklists[index],
+                                  style: TextStyle(fontSize: 32),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(6),
+                            child: CircularPercentIndicator(
+                              radius: 46,
+                              percent: 0.5,
+                              animation: true,
+                              progressColor: Theme.of(context).primaryColorDark,
+                              backgroundColor: Theme.of(context).hoverColor,
+                              center: Text(
+                                '50%',
+                                style: TextStyle(fontSize: 28),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                  ;
                 },
               ),
             ),
@@ -213,10 +254,8 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
   }
 
   Future<void> _sendSurgeryAddRequest(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     String memberDisplayName;
     DocumentSnapshot userDoc = await FirebaseFirestore.instance
         .collection('users')
@@ -236,20 +275,16 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
   }
 
   Future<void> _sendSurgeryRemoveRequest(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     await surgery.doc(widget.surgeryID).update({
       "members": FieldValue.arrayRemove([memberID]),
     });
   }
 
   Future<void> _deleteSurgery(memberID) async {
-    CollectionReference surgery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser.uid)
-        .collection('surgeries');
+    CollectionReference surgery =
+        FirebaseFirestore.instance.collection('surgeries');
     await surgery.doc(widget.surgeryID).delete();
   }
 }

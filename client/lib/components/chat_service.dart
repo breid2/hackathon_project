@@ -9,7 +9,7 @@ class ChatService extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   //Send message
-  Future<void> sendMessage(String message) async {
+  Future<void> sendMessage(String message, String surgeryID) async {
     //get current user's info
     final String currentUserID = _firebaseAuth.currentUser!.uid;
     String username = "null";
@@ -36,17 +36,17 @@ class ChatService extends ChangeNotifier {
 
     //add new message to database
     await _firestore
-        .collection('users')
-        .doc(currentUserID)
+        .collection('surgeries')
+        .doc(surgeryID)
         .collection('chats')
         .add(newMessage.toMap());
   }
 
   //Get messages
-  Stream<QuerySnapshot> getMessages(String currentUserID) {
+  Stream<QuerySnapshot> getMessages(String currentUserID, String surgeryID) {
     return _firestore
-        .collection('users')
-        .doc(currentUserID)
+        .collection('surgeries')
+        .doc(surgeryID)
         .collection('chats')
         .orderBy('timestamp', descending: false)
         .snapshots();
