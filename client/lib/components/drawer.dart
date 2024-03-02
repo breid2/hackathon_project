@@ -7,6 +7,7 @@ import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/feedback_page_.dart';
+import 'package:hackathon_project/pages/questions_concerns_page.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/preop_instructions.dart';
 
@@ -123,6 +124,17 @@ class MyDrawer extends StatelessWidget {
                     ),
                 ),
               ),
+
+              MyListTile(
+              icon: Icons.question_answer,
+              text: 'Questions & Concerns',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FAQPage(),
+                ),
+              ),
+            )
 
 
             
