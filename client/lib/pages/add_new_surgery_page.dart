@@ -14,9 +14,11 @@ class AddNewSurgeryPage extends StatefulWidget {
 class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
 
   String selectedHospital = "0";
   String selectedSurgery = "0";
+  String selectedSurgeon = "0";
   DateTime? surgeryDate;
 
   @override
@@ -25,9 +27,10 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
       appBar: AppBar(
         title: const Text('Create a New Surgery'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: 
+      body: SingleChildScrollView(
+        child: Padding( 
+          padding: const EdgeInsets.all(16.0),
+          child: 
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +76,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
                     );
                   }),
           
-              const SizedBox(height: 75),
+              const SizedBox(height: 35),
           
               // Surgery Selection Drop Down Widget
               const Text(
@@ -99,7 +102,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           
                       for (var surgery in surgeries!) {
                         surgeryItems.add(DropdownMenuItem(
-                            value: surgery.id, child: Text(surgery.id)));
+                            value: surgery.id, child: Text(surgery['name'])));
                       }
                     }
           
@@ -116,7 +119,30 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
                     );
                   }),
           
-              const SizedBox(height: 75),
+              const SizedBox(height: 35),
+
+              // Surgeon's Name Widget      
+              const Text(
+                'Surgeon Name:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              TextField(
+                controller: _textFieldController,
+                onChanged: (value) {
+                  setState(() {
+                    selectedSurgeon = value;
+                  });
+                },
+                decoration: const InputDecoration(
+                  labelText: "Enter",
+                )
+              ),
+
+              const SizedBox(height: 35),
           
               // Date Picker Widget
               const Text(
@@ -146,7 +172,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           ),
         ),
       ),
-    );
+    ));
   }
 
   // Select Date Method
@@ -188,6 +214,7 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
         var result = await surgery.add({
           'surgeryName': selectedSurgery,
           'surgeryStart': Timestamp.fromDate(surgeryDate!),
+          'surgeonName': selectedSurgeon,
           "ownerEmail": currentUser.email,
           "ownerUsername": currentUser.displayName,
           "timeStamp": Timestamp.now(),
