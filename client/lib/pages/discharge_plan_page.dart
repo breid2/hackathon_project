@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DischargePlanPage extends StatefulWidget {
   const DischargePlanPage({super.key});
@@ -10,6 +12,9 @@ class DischargePlanPage extends StatefulWidget {
 }
 
 class _DischargePlanPageState extends State<DischargePlanPage> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  
   final dateOfDischarge = DateTime.parse('2024-07-20 20:18:04Z'); // reference
 
   final patientName = "John Smith"; // Placeholder for patient name variable
