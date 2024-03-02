@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -10,6 +11,32 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  final videoURL = "https://www.youtube.com/watch?v=kvJvHAECOvY";
+  final temporaryURL =
+      "https://www.youtube.com/watch?v=HZJ8CFuK3aw&t=7s&ab_channel=St.ElizabethHealthcare";
+
+  late YoutubePlayerController _controller;
+
+  @override
+  initState() {
+    super.initState();
+
+    var videoID = YoutubePlayer.convertUrlToId(videoURL);
+    var temporaryVideoId = YoutubePlayer.convertUrlToId(temporaryURL);
+
+    // Choose the video ID to use with the controller
+    String? finalVideoId = videoID ?? temporaryVideoId;
+
+    if (finalVideoId != null) {
+      _controller = YoutubePlayerController(
+        initialVideoId: finalVideoId,
+        flags: const YoutubePlayerFlags(
+          autoPlay: false,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,16 +62,21 @@ class _WelcomePageState extends State<WelcomePage> {
               },
             ),
             const SizedBox(height: 20),
-            Container(
-              color: Colors.grey,
-              width: double.infinity,
-              height: 200,
-              child: const Center(
-                child: Text(
-                  'Video Placeholder',
-                  style: TextStyle(color: Colors.white),
+            YoutubePlayer(
+              controller: _controller,
+              showVideoProgressIndicator: true,
+              onReady: () => debugPrint('Ready'),
+              bottomActions: [
+                CurrentPosition(),
+                ProgressBar(
+                  isExpanded: true,
+                  colors: const ProgressBarColors(
+                    playedColor: Colors.amber,
+                    handleColor: Colors.amberAccent,
+                  ),
                 ),
-              ),
+                const PlaybackSpeedButton(),
+              ],
             ),
             const SizedBox(height: 20),
             const Text(
