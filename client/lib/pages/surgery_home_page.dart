@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:hackathon_project/pages/check_list.dart';
 
 class SurgeryHomePage extends StatefulWidget {
   final String surgeryName;
@@ -209,7 +210,10 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: GestureDetector(
-                    onTap: () => (),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChecklistPage('BeforeSurgery')),
+                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,7 +260,13 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: GestureDetector(
-                    onTap: () => (),
+                    onTap: () => Navigator.push(
+                                         
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => const ChecklistPage('BeforeSurgery')),
+                      
+                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -305,7 +315,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChecklistPage()),
+                      MaterialPageRoute(builder: (context) => ChecklistPage('AtHome')),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
