@@ -1,31 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
 
-<<<<<<< Updated upstream
-class FAQPage extends StatefulWidget {
-  const FAQPage({super.key});
-
-  @override
-  _FAQPageState createState() => _FAQPageState();
-}
-
-class _FAQPageState extends State<FAQPage> {
-  final List<Item> _data = generateItems(5);
-=======
 class FAQPage extends StatelessWidget {
   final List<Item> _data = generateItems();
->>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< Updated upstream
-        title: const Text('FAQ'),
-=======
         title: Text('FAQ'),
         backgroundColor: Colors.blueAccent,
->>>>>>> Stashed changes
       ),
       body: Column(
         children: <Widget>[
