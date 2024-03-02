@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ChecklistPage extends StatefulWidget {
-  const ChecklistPage({super.key});
+  const ChecklistPage(String s, {super.key});
 
   @override
   _ChecklistPageState createState() => _ChecklistPageState();
