@@ -12,8 +12,8 @@ void main() {
 
 class PreopInstructionPage extends StatefulWidget {
   const PreopInstructionPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _PreopInstructionPageState createState() => _PreopInstructionPageState();
