@@ -5,6 +5,7 @@ import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
+import 'package:hackathon_project/pages/questions_concerns_page.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -78,6 +79,17 @@ class MyDrawer extends StatelessWidget {
                   builder: (context) => const StepperScreen(
                   ))
               )
+            ),
+
+            MyListTile(
+              icon: Icons.question_answer,
+              text: 'Questions & Concerns',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FAQPage(),
+                ),
+              ),
             )
 
           ],
