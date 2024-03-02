@@ -86,121 +86,125 @@ class _DischargePlanPageState extends State<DischargePlanPage> {
         appBar: AppBar(
           title: Text("Discharge Plan"),
         ),
-        body: SingleChildScrollView( // Allows for scrolling when content doesn't fit on the screen
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Card(
-                  child: ListTile(
-                    leading: Icon(Icons.info_rounded), // Example icon
-                    subtitle: Text('Lay out the specifics of the discharge plan to make sure that everyone is on the same page.'),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: DataTable(
-                  columns: const [
-                    DataColumn(label: Text('Patient Name')),
-                    DataColumn(label: Text('Expected Discharge Date')),
-                  ],
-                  rows: [
-                    DataRow(
-                      cells: [
-                        DataCell(Text(patientName)),
-                        DataCell(Text(DateFormat('MMMM d, yyyy').format(dateOfDischarge))),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              // Names and Roles table
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: DataTable(
-                  columns: const [
-                    DataColumn(label: Text('Name')),
-                    DataColumn(label: Text('Role')),
-                  ],
-                  rows: namesAndRoles.map((role) => DataRow(
-                      cells: [
-                        DataCell(Text(role["Name"]!)),
-                        DataCell(Text(role["Role"]!)),
-                      ],
-                    )).toList(),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'The Primary Objective',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ),
-              // Objective and Success Metrics table
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  trackVisibility: true, // Set to true if you want the scrollbar to always be visible
-                  thickness: 6.0, // Can be adjusted for the scrollbar thickness
-                  radius: Radius.circular(5.0), // Can be adjusted for the scrollbar radius
-                  scrollbarOrientation: ScrollbarOrientation.bottom, // Positions scrollbar at the bottom
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: DataTable(
-                      columns: const [
-                        DataColumn(label: Text('Objective'), numeric: false),
-                        DataColumn(label: Text('Success Metrics'), numeric: false),
-                      ],
-                      rows: [
-                        DataRow(
-                          cells: [
-                            DataCell(Text('To go home and recover from surgery and pain is managed.')),
-                            DataCell(Text('Medically stable')),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text('')), // Empty cell for alignment
-                            DataCell(Text('Pain under control')),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text('')), // Empty cell for alignment
-                            DataCell(Text('Wound not draining')),
-                          ],
-                        ),
-                      ], 
+        body: Container( // Container added here
+        padding: EdgeInsets.all(8.0), // Optional: Add padding if needed
+        child:
+          SingleChildScrollView( // Allows for scrolling when content doesn't fit on the screen
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Card(
+                    child: ListTile(
+                      leading: Icon(Icons.info_rounded), // Example icon
+                      subtitle: Text('Lay out the specifics of the discharge plan to make sure that everyone is on the same page.'),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Task List',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: DataTable(
+                    columns: const [
+                      DataColumn(label: Text('Patient Name')),
+                      DataColumn(label: Text('Expected Discharge Date')),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(Text(patientName)),
+                          DataCell(Text(DateFormat('MMMM d, yyyy').format(dateOfDischarge))),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              _buildChecklist(CupertinoIcons.bandage, "Wound Care", _itemsDecriptions["Wound Care"]!, Colors.red.shade100),
-              _buildChecklist(CupertinoIcons.heart_circle, "Medically Stable", _itemsDecriptions["Medically Stable"]!, Colors.red.shade100),
-              _buildChecklist(Icons.run_circle_outlined, "Mobilize", _itemsDecriptions["Mobilize"]!, Colors.red.shade100),
-              _buildChecklist(Icons.adjust, "Pain", _itemsDecriptions["Pain"]!, Colors.red.shade100),
-              _buildChecklist(IconData(0xe1d7, fontFamily: 'MaterialIcons'), "Trasportation", _itemsDecriptions["Trasportation"]!, Colors.teal.shade100),
-              _buildChecklist(Icons.medication_rounded, "Medication", _itemsDecriptions["Medication"]!, Colors.teal.shade100),
-              _buildChecklist(Icons.back_hand_outlined, "Physiotherapy", _itemsDecriptions["Physiotherapy"]!, Colors.teal.shade100),
-              _buildChecklist(Icons.widgets_rounded, "Supplies", _itemsDecriptions["Supplies"]!, Colors.teal.shade100),
-              _buildChecklist(Icons.emoji_emotions, "Feelings about discharge", _itemsDecriptions["Feelings about discharge"]!, Colors.deepPurple.shade100),
-              _buildChecklist(Icons.wc, "Bladder", _itemsDecriptions["Bladder"]!, Colors.grey.shade100),
-              _buildChecklist(Icons.wc, "Bowels", _itemsDecriptions["Bowels"]!, Colors.brown.shade100),
-              const SizedBox(height: 8),
-              // Other widgets go here
-            ],
+                // Names and Roles table
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: DataTable(
+                    columns: const [
+                      DataColumn(label: Text('Name')),
+                      DataColumn(label: Text('Role')),
+                    ],
+                    rows: namesAndRoles.map((role) => DataRow(
+                        cells: [
+                          DataCell(Text(role["Name"]!)),
+                          DataCell(Text(role["Role"]!)),
+                        ],
+                      )).toList(),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'The Primary Objective',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+                // Objective and Success Metrics table
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    trackVisibility: true, // Set to true if you want the scrollbar to always be visible
+                    thickness: 6.0, // Can be adjusted for the scrollbar thickness
+                    radius: Radius.circular(5.0), // Can be adjusted for the scrollbar radius
+                    scrollbarOrientation: ScrollbarOrientation.bottom, // Positions scrollbar at the bottom
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        columns: const [
+                          DataColumn(label: Text('Objective'), numeric: false),
+                          DataColumn(label: Text('Success Metrics'), numeric: false),
+                        ],
+                        rows: [
+                          DataRow(
+                            cells: [
+                              DataCell(Text('To go home and recover from surgery and pain is managed.')),
+                              DataCell(Text('Medically stable')),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(Text('')), // Empty cell for alignment
+                              DataCell(Text('Pain under control')),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(Text('')), // Empty cell for alignment
+                              DataCell(Text('Wound not draining')),
+                            ],
+                          ),
+                        ], 
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Task List',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                _buildChecklist(CupertinoIcons.bandage, "Wound Care", _itemsDecriptions["Wound Care"]!, Colors.red.shade100),
+                _buildChecklist(CupertinoIcons.heart_circle, "Medically Stable", _itemsDecriptions["Medically Stable"]!, Colors.red.shade100),
+                _buildChecklist(Icons.run_circle_outlined, "Mobilize", _itemsDecriptions["Mobilize"]!, Colors.red.shade100),
+                _buildChecklist(Icons.adjust, "Pain", _itemsDecriptions["Pain"]!, Colors.red.shade100),
+                _buildChecklist(IconData(0xe1d7, fontFamily: 'MaterialIcons'), "Trasportation", _itemsDecriptions["Trasportation"]!, Colors.teal.shade100),
+                _buildChecklist(Icons.medication_rounded, "Medication", _itemsDecriptions["Medication"]!, Colors.teal.shade100),
+                _buildChecklist(Icons.back_hand_outlined, "Physiotherapy", _itemsDecriptions["Physiotherapy"]!, Colors.teal.shade100),
+                _buildChecklist(Icons.widgets_rounded, "Supplies", _itemsDecriptions["Supplies"]!, Colors.teal.shade100),
+                _buildChecklist(Icons.emoji_emotions, "Feelings about discharge", _itemsDecriptions["Feelings about discharge"]!, Colors.deepPurple.shade100),
+                _buildChecklist(Icons.wc, "Bladder", _itemsDecriptions["Bladder"]!, Colors.grey.shade100),
+                _buildChecklist(Icons.wc, "Bowels", _itemsDecriptions["Bowels"]!, Colors.brown.shade100),
+                const SizedBox(height: 8),
+                // Other widgets go here
+              ],
+            ),
           ),
         ),
       );
