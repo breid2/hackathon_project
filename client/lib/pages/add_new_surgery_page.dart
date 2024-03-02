@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackathon_project/components/button.dart';
+import 'package:hackathon_project/components/helperFunctions/MoveData.dart';
+
 
 class AddNewSurgeryPage extends StatefulWidget {
   const AddNewSurgeryPage({super.key});
@@ -214,6 +216,9 @@ class _AddNewSurgeryPageState extends State<AddNewSurgeryPage> {
           "members": [currentUser.uid, 'ity0IuvNBDQTWW6j9oQo73ffgBj2'],
           "memberInfo": membersInfo,
         });
+        print(result.id);
+        MoveData myHomePage = MoveData();
+        MoveData.moveSurgeryDataToUserEpisode(result.id);
 
         SnackBar(content: Text(currentUser.toString()));
         Navigator.pop(context);
