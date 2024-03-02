@@ -8,16 +8,14 @@ import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/feedback_page_.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
-import 'package:hackathon_project/pages/feedback_page.dart';
-<<<<<<< Updated upstream
-import 'package:hackathon_project/pages/Stepper.dart';
 import 'package:hackathon_project/pages/preop_instructions.dart';
-=======
->>>>>>> Stashed changes
 
 class MyDrawer extends StatelessWidget {
+
   final void Function()? onSignOut;
-  const MyDrawer({super.key, required this.onSignOut});
+  const MyDrawer({
+    super.key, 
+    required this.onSignOut});
 
   
   @override
@@ -57,16 +55,16 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
 
-            MyListTile(
-              icon: Icons.checklist,
-              text: 'Pre-operative Instructions',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const PreopInstructionPage(
-                        )),
-              ),
-            ),
+            // MyListTile(
+            //   icon: Icons.checklist,
+            //   text: 'Pre-operative Instructions',
+            //   onTap: () => Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const PreopInstructionPage(surgeryID: widget.surgeryID
+            //             )),
+            //   ),
+            // ),
 
             MyListTile(
               icon: Icons.wheelchair_pickup,

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/chat_page.dart';
+import 'package:hackathon_project/pages/preop_instructions.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
 
@@ -210,7 +211,10 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: GestureDetector(
-                    onTap: () => (),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PreopInstructionPage()),
+                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

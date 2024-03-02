@@ -17,9 +17,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: AuthPage(),
+        theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.green,
+        // accentColor: Colors.orange,
+
+        fontFamily: 'Georgia',
+        
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+          ), 
+        )
+        ),
         routes: {
           //'/Activity': (context) => const CreateActivity(),
         });
