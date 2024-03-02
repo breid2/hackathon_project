@@ -44,6 +44,7 @@ dependencies:
   step_progress_indicator: ^1.0.2
   flutter_stepindicator: ^0.1.7
   dropdown_search: ^5.0.6
+  intl_phone_field: ^3.1.0
   
 
 dev_dependencies:
