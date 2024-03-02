@@ -16,10 +16,37 @@ class _WelcomePageState extends State<WelcomePage> {
       appBar: AppBar(
         title: const Text('Welcome'),
       ),
-      body: const Center(
-        child: Text(
-          'Welcome!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 20),
+            const Text(
+              'Welcome to AHS. Please watch the welcome video',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            Container(
+              color: Colors.grey,
+              width: double.infinity,
+              height: 200,
+              child: const Center(
+                child: Text(
+                  'Video Placeholder',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Speedy Recovery 👋',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
