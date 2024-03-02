@@ -7,6 +7,7 @@ import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
+import 'package:hackathon_project/pages/preop_instructions.dart';
 
 class MyDrawer extends StatelessWidget {
   final void Function()? onSignOut;
@@ -45,6 +46,17 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const WelcomePage(),
                 ),
+              ),
+            ),
+
+            MyListTile(
+              icon: Icons.checklist,
+              text: 'Pre-operative Instructions',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const PreopInstructionPage(
+                        )),
               ),
             ),
 
