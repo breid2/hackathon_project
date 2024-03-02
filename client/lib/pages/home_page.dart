@@ -1,7 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'package:hackathon_project/components/button.dart';
 import 'package:hackathon_project/components/drawer.dart';
+import 'package:hackathon_project/pages/add_new_surgery_page.dart';
+// import 'package:hackathon_project/pages/new_surgery_page.dart';
+import 'package:hackathon_project/pages/surgery_home_page.dart';
+import 'package:intl/intl.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,22 +29,165 @@ class _HomePageState extends State<HomePage> {
     FirebaseAuth.instance.signOut();
   }
 
+  //go to new surgery page
+  void goToNewSurgeryPage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AddNewSurgeryPage(),
+        ));
+  }
+
+  //go to surgery page
+  void goToSurgeryHomePage(
+    String user,
+    surgeryName,
+    members,
+    surgeryID,
+    surgeryStart,
+  ) async {
+    DateTime surgeryDateTime = DateTime.parse(surgeryStart.toDate().toString());
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SurgeryHomePage(
+                surgeryStart: surgeryDateTime,
+                members: const [],
+                surgeryName: surgeryName,
+                surgeryID: surgeryID,
+                user: currentUser.uid,
+                time: Timestamp.now().toString(),
+              )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text("ENSF609 Hackathon"),
+        title: const Text("My Discharge"),
       ),
       drawer: MyDrawer(
         onSignOut: signOut,
       ),
       body: Center(
         child: Column(children: [
+          //Create new surgery
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: goToNewSurgeryPage, child: Text('Add Surgery')),
+          ),
+
+          //Show existing surgeries
+          Expanded(
+            child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('surgeries')
+                  .where('members', arrayContains: currentUser.uid)
+                  .orderBy('surgeryStart', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      //get the surgery
+                      final post = snapshot.data!.docs[index];
+                      DateTime surgeryStartDate = post["surgeryStart"].toDate();
+                      int progessPercent = (post['progress']) * 100 as int;
+                      String formattedDate =
+                          DateFormat('yyyy-MM-dd').format(surgeryStartDate);
+                      return Container(
+                        height: 120,
+                        margin: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).primaryColorDark,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: GestureDetector(
+                          onTap: () => goToSurgeryHomePage(
+                            currentUser.uid,
+                            post["surgeryName"],
+                            post["members"],
+                            post.id,
+                            post["surgeryStart"],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      post["surgeryName"],
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      formattedDate,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      post['ownerUsername'],
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(6),
+                                child: CircularPercentIndicator(
+                                  radius: 46,
+                                  percent: post['progress'],
+                                  animation: true,
+                                  progressColor:
+                                      Theme.of(context).primaryColorDark,
+                                  backgroundColor: Theme.of(context).hoverColor,
+                                  center: Text(
+                                    progessPercent.toString() + '%',
+                                    style: TextStyle(fontSize: 28),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+          ),
           //logged in as
           Text(
             "Logged in as: ${currentUser.email!}",
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
 
           const SizedBox(

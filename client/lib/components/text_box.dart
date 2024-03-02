@@ -31,7 +31,7 @@ class MyTextBox extends StatelessWidget {
             //edit button
             IconButton(
               onPressed: onPressed,
-              icon: Icon(
+              icon: const Icon(
                 Icons.settings,
               ),
             ),

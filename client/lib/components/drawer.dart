@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
-import 'package:hackathon_project/pages/chat_page.dart';
-import 'package:hackathon_project/pages/at_home_checklist.dart';
+// import 'package:hackathon_project/pages/chat_page.dart';
 import 'package:hackathon_project/pages/discharge_progress_page.dart';
+import 'package:hackathon_project/pages/at_home_checklist.dart';
+import 'package:hackathon_project/pages/date_of_discharge_page.dart';
+import 'package:hackathon_project/pages/welcome_page.dart';
 import 'package:hackathon_project/pages/Stepper.dart';
 import 'package:hackathon_project/pages/preop_instructions.dart';
 
@@ -34,16 +36,15 @@ class MyDrawer extends StatelessWidget {
               onTap: () => Navigator.pop(context),
             ),
 
-            //chat list tile
+            //Welcome list tile
             MyListTile(
-              icon: Icons.chat,
-              text: 'Chat',
+              icon: Icons.handshake,
+              text: 'Welcome',
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ChatPage(
-                          user: '',
-                        )),
+                  builder: (context) => const WelcomePage(),
+                ),
               ),
             ),
 
@@ -59,39 +60,27 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
 
-            //chat list tile
-            MyListTile(
-              icon: Icons.checklist,
-              text: 'Pre-operative Instructions',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PreopInstructionPage()),
-              ),
-            ),
-
             //at home check list tile
             MyListTile(
-              icon: Icons.home_work, 
+              icon: Icons.home_work,
               text: 'At-Home Checklist',
               // onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChecklistPage())),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChecklistPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const ChecklistPage()),
                 );
               },
             ),
-             MyListTile(
-              icon: Icons.checklist,
-              text: 'Discharge Checklist',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StepperScreen(
-                  ))
-              )
-            )
 
+            MyListTile(
+                icon: Icons.checklist,
+                text: 'Discharge Checklist',
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StepperScreen())))
           ],
         ),
 

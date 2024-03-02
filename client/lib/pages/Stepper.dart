@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class StepperScreen extends StatefulWidget {
+  const StepperScreen({super.key});
+
   @override
   _StepperScreenState createState() => _StepperScreenState();
 }
@@ -15,13 +17,13 @@ class _StepperScreenState extends State<StepperScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Discharge'),
+        title: const Text('My Discharge'),
         centerTitle: true,
       ),
       body: 
         Theme(
         data: Theme.of(context).copyWith(
-          colorScheme: ColorScheme.light(primary: Colors.blue)
+          colorScheme: const ColorScheme.light(primary: Colors.blue)
         ), 
         child: Stepper(
           //type: StepperType.horizontal,
@@ -47,24 +49,24 @@ class _StepperScreenState extends State<StepperScreen> {
          controlsBuilder: (context, controlsDetails) {
             final isLastStep = currentStep == getSteps().length - 1;
             return Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: const EdgeInsets.only(top: 50),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 120,
                     child: ElevatedButton(
-                      child: Text(isLastStep ? 'Finish' : 'Next'),
                       onPressed: controlsDetails.onStepContinue,
+                      child: Text(isLastStep ? 'Finish' : 'Next'),
                     ),
                   ),
                   const SizedBox(width: 12),
                   if (currentStep != 0 || (currentStep == getSteps().length))
                     // ignore: avoid_print
-                    Container(
+                    SizedBox(
                       width: 120,
                       child: ElevatedButton(
-                        child: Text('Back'),
                         onPressed: controlsDetails.onStepCancel,
+                        child: const Text('Back'),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -83,36 +85,36 @@ class _StepperScreenState extends State<StepperScreen> {
     Step(
       state: currentStep > 0 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 0,
-      title: Text('Account'),
+      title: const Text('Account'),
       content: Column(children: <Widget>[
         TextFormField(
           controller: firstName,
-          decoration: InputDecoration(labelText: 'First Name'),
+          decoration: const InputDecoration(labelText: 'First Name'),
         )
       ],),
     ),
     Step(
       state: currentStep > 1 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 1,
-      title: Text('Before Surgery'),
+      title: const Text('Before Surgery'),
       content: Container(),
     ),
     Step(
       state: currentStep > 2 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 2,
-      title: Text('After Surgery'),
+      title: const Text('After Surgery'),
       content: Container(),
     ),
     Step(
       state: currentStep > 3 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 3,
-      title: Text('At Home'),
+      title: const Text('At Home'),
       content: Container(),
     ),
     Step(
       state: currentStep > 4 ? StepState.complete : StepState.indexed,
       isActive: currentStep >= 4,
-      title: Text('Completed'),
+      title: const Text('Completed'),
       content: Container(),
     ),
   ];
