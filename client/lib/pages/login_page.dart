@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -75,11 +75,14 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset('assets/ahs_logo.jpeg',
+                width: 150, height: 150,),
                 //logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
+                // const Icon(
+                //   // Icons.accessible_rounded,
+                //   Icons.assist_walker,
+                //   size: 150,
+                // ),
 
                 const SizedBox(height: 50),
 
