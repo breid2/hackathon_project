@@ -33,3 +33,7 @@ migrate_working_dir/
 *.iws
 .idea/
 .vscode/
+
+## temporarily ignore - Redge
+client/lib/components/calendar_icon.dart
+client/lib/pages/discharge_progress_page.dart
