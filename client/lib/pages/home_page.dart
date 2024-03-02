@@ -96,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                       //get the surgery
                       final post = snapshot.data!.docs[index];
                       DateTime surgeryStartDate = post["surgeryStart"].toDate();
+                      int progessPercent = (post['progress']) * 100 as int;
                       String formattedDate =
                           DateFormat('yyyy-MM-dd').format(surgeryStartDate);
                       return Container(
@@ -125,15 +126,28 @@ class _HomePageState extends State<HomePage> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       post["surgeryName"],
-                                      style: TextStyle(fontSize: 32),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
+                                    const SizedBox(height: 4),
                                     Text(
                                       formattedDate,
-                                      style: TextStyle(fontSize: 24),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      post['ownerUsername'],
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -142,13 +156,13 @@ class _HomePageState extends State<HomePage> {
                                 padding: EdgeInsets.all(6),
                                 child: CircularPercentIndicator(
                                   radius: 46,
-                                  percent: 0.5,
+                                  percent: post['progress'],
                                   animation: true,
                                   progressColor:
                                       Theme.of(context).primaryColorDark,
                                   backgroundColor: Theme.of(context).hoverColor,
                                   center: Text(
-                                    '50%',
+                                    progessPercent.toString() + '%',
                                     style: TextStyle(fontSize: 28),
                                   ),
                                 ),
