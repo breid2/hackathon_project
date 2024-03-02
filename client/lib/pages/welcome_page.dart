@@ -14,7 +14,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome Page'),
+        title: const Text('Welcome'),
       ),
       body: const Center(
         child: Text(
