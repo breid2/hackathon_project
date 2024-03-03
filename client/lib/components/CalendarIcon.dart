@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class CalendarIcon extends StatelessWidget {
   final DateTime date;
 
-  const CalendarIcon({Key? key, required this.date}) : super(key: key);
+  const CalendarIcon({super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CalendarIcon extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
         borderRadius: BorderRadius.circular(8),
@@ -30,7 +30,7 @@ class CalendarIcon extends StatelessWidget {
   right: 0,
   child: Container(
     height: 40, // Increased height for the red container
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Colors.red,
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(8),
@@ -46,7 +46,7 @@ Positioned(
   child: Center(
     child: Text(
       DateFormat('MMM').format(date).toUpperCase(), // Month
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 20, // Ensure the font size fits within the new height
         fontWeight: FontWeight.bold,
         color: Colors.white,
@@ -62,7 +62,7 @@ Positioned(
             child: Center(
               child: Text(
                 date.day.toString(), // Day
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 44,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
@@ -77,7 +77,7 @@ Positioned(
             child: Center(
               child: Text(
                 DateFormat('HH:mm').format(date), // Time
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.black54,

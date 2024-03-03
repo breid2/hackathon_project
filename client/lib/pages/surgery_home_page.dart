@@ -213,7 +213,7 @@ class _SurgeryHomePageState extends State<SurgeryHomePage> {
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PreopInstructionPage()),
+                      MaterialPageRoute(builder: (context) => const PreopInstructionPage()),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,

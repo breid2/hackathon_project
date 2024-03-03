@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: AuthPage(),
+        home: const AuthPage(),
         theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.green,
@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
 
         fontFamily: 'Georgia',
         
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.green),
           ), 
         )
         ),
-        routes: {
+        routes: const {
           //'/Activity': (context) => const CreateActivity(),
         });
   }

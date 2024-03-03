@@ -7,7 +7,7 @@ class ChecklistPage extends StatefulWidget {
   _ChecklistPageState createState() => _ChecklistPageState();
 }
 class _ChecklistPageState extends State<ChecklistPage> {
-  List<String> _checklistItems = [
+  final List<String> _checklistItems = [
     "Time Of Surgery",
     "Medication Instructions",
     "Don't drink alcohol 24 hrs before",

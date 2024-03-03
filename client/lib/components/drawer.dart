@@ -2,23 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_project/components/my_list_tile.dart';
 // import 'package:hackathon_project/pages/chat_page.dart';
-import 'package:hackathon_project/pages/discharge_progress_page.dart';
 import 'package:hackathon_project/pages/at_home_checklist.dart';
 import 'package:hackathon_project/pages/date_of_discharge_page.dart';
 import 'package:hackathon_project/pages/discharge_plan_page.dart';
 import 'package:hackathon_project/pages/feedback_page_.dart';
 import 'package:hackathon_project/pages/questions_concerns_page.dart';
 import 'package:hackathon_project/pages/welcome_page.dart';
-import 'package:hackathon_project/pages/preop_instructions.dart';
 
 class MyDrawer extends StatelessWidget {
-
   final void Function()? onSignOut;
-  const MyDrawer({
-    super.key, 
-    required this.onSignOut});
+  const MyDrawer({super.key, required this.onSignOut});
 
-  
   @override
   Widget build(BuildContext context) {
     User currentUser = FirebaseAuth.instance.currentUser!;
@@ -117,15 +111,14 @@ class MyDrawer extends StatelessWidget {
               icon: Icons.feedback,
               text: 'Feedback',
               onTap: () => Navigator.push(
-              context,
-                 MaterialPageRoute(
-                    builder: (context) => const FeedbackPage(),
-            
-                    ),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FeedbackPage(),
                 ),
               ),
+            ),
 
-              MyListTile(
+            MyListTile(
               icon: Icons.question_answer,
               text: 'Questions & Concerns',
               onTap: () => Navigator.push(
@@ -135,19 +128,16 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             )
-
-
-            
           ],
         ),
         const SizedBox(
-            height: 100,
-          ),
+          height: 100,
+        ),
         //logout list tile
         Text(
-            "Logged in as: ${currentUser.email!}",
-            style: const TextStyle(color: Colors.grey),
-          ),
+          "Logged in as: ${currentUser.email!}",
+          style: const TextStyle(color: Colors.grey),
+        ),
         MyListTile(icon: Icons.logout, text: 'Logout', onTap: onSignOut),
       ]),
     );
